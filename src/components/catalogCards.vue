@@ -89,6 +89,9 @@
 <script>
 export default {
   name: 'ModelGallery',
+  
+  // Declarar explicitamente os eventos que este componente emite
+  emits: ['models-loaded'],
 
   data() {
     return {
@@ -119,7 +122,14 @@ export default {
         .then(data => {
           this.models = data;
           this.isLoading = false;
+          // Emitir o evento quando os dados estiverem prontos
+          this.$emit('models-loaded', this.models.length);
         })
+        .catch(error => {
+          this.error = error.message;
+          this.isLoading = false;
+          console.error('Error fetching models:', error);
+        });
     },
 
     getModel(id) {
@@ -135,25 +145,30 @@ export default {
         })
         .then(data => {
           this.model = data;
-          // Set the initial main image when the modal opens
           this.currentImage = data.images[0].imagem1;
           this.isLoading = false;
           
-          // Add this to force body overflow hidden when modal is open
           document.body.style.overflow = 'hidden';
         })
+        .catch(error => {
+          this.error = error.message;
+          this.isLoading = false;
+          console.error(`Error fetching model ${id}:`, error);
+        });
     },
     
-    // New method to change the main image
     changeImage(imageUrl) {
       this.currentImage = imageUrl;
     },
 
     closeModel() {
       this.model = null;
-      // Reset body overflow when modal is closed
       document.body.style.overflow = '';
     },
+
+    getModelsCount() {
+      return this.models.length;
+    }
   }
 }
 </script>
