@@ -64,7 +64,7 @@ export default {
 
 <style scoped>
   body{
-    background: rgb(20, 20, 20);
+    background: rgb(5, 5, 5);
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -85,10 +85,12 @@ export default {
     justify-content: space-between;
     margin-top: 1rem;
     padding: 0 35px;
+    width: 100%;
   }
 
   header h1{
     font-weight: 400;
+    font-size: 1.6rem;
   }
 
   header strong{
@@ -97,13 +99,13 @@ export default {
   }
 
   header p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 300;
     display: flex;
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
   }
 
   header p span{
