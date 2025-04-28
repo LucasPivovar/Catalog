@@ -1,0 +1,27 @@
+{
+    "id": "Camila",
+    "name": "Camila Rocha",
+    "carrer": [
+        {
+            "carrer1": "Atriz",
+            "carrer2": "Apresentadora"
+        }
+    ],
+    "age": 26,
+    "biography": "Atriz e apresentadora com experiência em televisão e internet. Apresentou diversos programas de entretenimento e possui formação em artes cênicas.",
+
+    "images": [
+        {
+            "imagem1": "./api/models/Camila/images/camila.svg",
+            "imagem2": "",
+            "imagem3": ""
+        }
+    ],
+    "contact": [
+        {
+            "whatsapp": "https://web.whatsapp.com/",
+            "telegram": "https://web.telegram.org/",
+            "instagram": "https://www.instagram.com/"
+        }
+    ]
+}

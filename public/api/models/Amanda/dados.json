@@ -1,0 +1,26 @@
+{
+    "id": "Amanda",
+    "name": "Amanda Silva",
+    "carrer": [
+        {
+            "carrer1": "Modelo",
+            "carrer2": "Fotografa"
+        }
+    ],
+    "age": 27,
+    "biography": "Modelo profissional com mais de 5 anos de experiência em campanhas de moda e comerciais. Especializada em fotografia de moda e editorial.",
+    "images": [
+        {
+            "imagem1": "./api/models/Amanda/images/amanda.svg",
+            "imagem2": "./api/models/Amanda/images/amanda2.svg",
+            "imagem3": "./api/models/Amanda/images/amanda3.svg"
+        }
+    ],
+    "contact": [
+        {
+            "whatsapp": "https://web.whatsapp.com/",
+            "telegram": "https://web.telegram.org/",
+            "instagram": "https://www.instagram.com/"
+        }
+    ]
+}
