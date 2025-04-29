@@ -1,0 +1,26 @@
+{
+    "id": "Carla",
+    "name": "Carla Martins",
+    "carrer": [
+        {
+            "carrer1": "Modelo",
+            "carrer2": "Influencer"
+        }
+    ],
+    "age": 25,
+    "biography": "Modelo e influenciadora digital especializada em moda e beleza. Colabora com diversas marcas no segmento de moda e cosméticos.",
+    "images": [
+        {
+            "imagem1": "./api/models/Carla/images/carla.svg",
+            "imagem2": "",
+            "imagem3": ""
+        }
+    ],
+    "contact": [
+        {
+            "whatsapp": "https://web.whatsapp.com/",
+            "telegram": "https://web.telegram.org/",
+            "instagram": "https://www.instagram.com/"
+        }
+    ]
+}

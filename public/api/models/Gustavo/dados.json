@@ -1,0 +1,26 @@
+{
+    "id": "Gustavo",
+    "name": "Gustavo Rocha",
+    "carrer": [
+        {
+            "carrer1": "Modelo",
+            "carrer2": "Dança"
+        }
+    ],
+    "age": 33,
+    "biography": "Ator e comediante com experiência em stand-up comedy e programas de humor. Já se apresentou nos principais clubes de comédia do país.",
+    "images": [
+        {
+            "imagem1": "./api/models/Gustavo/images/gustavo.svg",
+            "imagem2": "",
+            "imagem3": ""
+        }
+    ],
+    "contact": [
+        {
+            "whatsapp": "https://web.whatsapp.com/",
+            "telegram": "https://web.telegram.org/",
+            "instagram": "https://www.instagram.com/"
+        }
+    ]
+}

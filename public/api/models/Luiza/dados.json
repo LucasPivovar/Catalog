@@ -1,0 +1,26 @@
+{
+    "id": "Luiza",
+    "name": "Luiza Prado",
+    "carrer": [
+        {
+            "carrer1": "Modelo",
+            "carrer2": "Estilista"
+        }
+    ],
+    "age": 26,
+    "biography": "Modelo e estilista com formação em design de moda. Desenvolveu coleções para marcas independentes e participou de desfiles nacionais.",
+    "images": [
+        {
+            "imagem1": "./api/models/Luiza/images/luiza.svg",
+            "imagem2": "",
+            "imagem3": ""
+        }
+    ],
+    "contact": [
+        {
+            "whatsapp": "https://web.whatsapp.com/",
+            "telegram": "https://web.telegram.org/",
+            "instagram": "https://www.instagram.com/"
+        }
+    ]
+}

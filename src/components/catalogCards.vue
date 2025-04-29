@@ -3,9 +3,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <div class="main">
-    <section class="models grid" >
+    <section class="models grid">
        <div 
-         v-for="item in models"
+         v-for="item in paginatedModels"
          :key="item.id" 
          @click="getModel(item.id)"
          class="model"
@@ -21,9 +21,40 @@
            </div>
          </div>
        </div>
-     </section>
+    </section>
 
-     <section class="modal" v-if="model" @click.self="closeModel">
+    <!-- Paginação -->
+    <div class="pagination">
+      <button 
+        @click="goToPage(currentPage - 1)" 
+        :disabled="currentPage === 1"
+        class="pagination-button"
+      >
+        &laquo; Anterior
+      </button>
+      
+      <div class="page-numbers">
+        <button 
+          v-for="page in totalPages" 
+          :key="page" 
+          @click="goToPage(page)"
+          class="page-number"
+          :class="{ active: page === currentPage }"
+        >
+          {{ page }}
+        </button>
+      </div>
+      
+      <button 
+        @click="goToPage(currentPage + 1)" 
+        :disabled="currentPage === totalPages"
+        class="pagination-button"
+      >
+        Próxima &raquo;
+      </button>
+    </div>
+
+    <section class="modal" v-if="model" @click.self="closeModel">
       <div class="modal_container">
         <div class="model_galery">
           <img :src="currentImage" alt="model" class="div1">
@@ -82,15 +113,13 @@
         
         <button class="close_button" @click="closeModel">×</button>
       </div>
-     </section>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ModelGallery',
-  
-  // Declarar explicitamente os eventos que este componente emite
   emits: ['models-loaded'],
 
   data() {
@@ -99,15 +128,39 @@ export default {
       model: null,
       currentImage: null,
       isLoading: false,
-      error: null
+      error: null,
+      // Paginação
+      currentPage: 1,
+      modelsPerPage: 10
     }
   },
 
   created() {
     this.fetchModels()
   },
+  
+  computed: {
+    // Calcular total de páginas
+    totalPages() {
+      return Math.ceil(this.models.length / this.modelsPerPage)
+    },
+    
+    // Filtrar modelos para a página atual
+    paginatedModels() {
+      const start = (this.currentPage - 1) * this.modelsPerPage
+      const end = start + this.modelsPerPage
+      return this.models.slice(start, end)
+    }
+  },
 
   methods: {
+    goToPage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    },
+    
     fetchModels() {
       this.isLoading = true;
       this.error = null;
@@ -122,7 +175,6 @@ export default {
         .then(data => {
           this.models = data;
           this.isLoading = false;
-          // Emitir o evento quando os dados estiverem prontos
           this.$emit('models-loaded', this.models.length);
         })
         .catch(error => {
@@ -174,10 +226,13 @@ export default {
 </script>
 
 <style scoped>
+/* Estilos gerais */
+/* Corpo da pagina */
 .main{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -193,6 +248,7 @@ export default {
   padding: 20px;
 }
 
+/* Estilos para cada modelo */
 .model {
   width: 250px;
   height: 444px;
@@ -230,7 +286,6 @@ export default {
   animation: premium-blink 1s infinite;
 }
 
-/* Add a glowing animation effect */
 .model.premium::before {
   content: "";
   position: absolute;
@@ -238,26 +293,12 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  border-radius: 17px; /* slightly larger than the 15px of the card */
+  border-radius: 17px; 
   background: linear-gradient(45deg, gold, #ff9900, #ffcc00, gold);
   background-size: 400% 400%;
   z-index: -1;
 }
 
-@keyframes premium-blink {
-  0% {
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 10px rgba(255, 215, 0, 1);
-  }
-  100% {
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-  }
-}
-
-
-/* Add a premium tag to the top right corner */
 .model.premium::after {
   content: url("../assets/premium.svg");
   position: absolute;
@@ -307,6 +348,65 @@ span{
   border-radius: 15px;
   font-family: "inter";
   margin-top: 1rem;
+}
+
+/* Paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  width: 100%;
+  gap: 15px;
+}
+
+.pagination-button {
+  background-color: rgb(37, 37, 37);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: rgb(243, 80, 80);
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-number {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(37, 37, 37);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  transition: all 0.3s;
+}
+
+.page-number:hover {
+  background-color: rgb(70, 70, 70);
+}
+
+.page-number.active {
+  background-color: rgb(243, 80, 80);
+  font-weight: bold;
 }
 
 /* Modal */
@@ -432,6 +532,7 @@ span{
   transition: all 0.3s ease;
 }
 
+/* Links de contato */
 
 .whatsapp{
   background: rgb(91, 199, 108);
@@ -457,6 +558,8 @@ span{
   background: linear-gradient(to right, rgb(230, 112, 253), rgb(238, 72, 72));
 }
 
+/* Botão de fechar a modal */
+
 .close_button {
   position: absolute;
   display: flex;
@@ -476,6 +579,18 @@ span{
 
 .close_button:hover {
   background: rgb(209, 13, 13);
+}
+
+@keyframes premium-blink {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+  }
 }
 
 @media (max-width: 768px) {
@@ -501,7 +616,6 @@ span{
     align-items: flex-start;
     padding: 10px 0;
     overflow-y: scroll !important;
-
   }
   
   .modal_container {
@@ -542,13 +656,23 @@ span{
     object-fit: cover;
     width: 100px;
     max-width: 300px;
-    
   }
   
   .model_details {
     padding: 15px;
     width: 100%;
     height: auto;
+  }
+  
+  /* Responsividade para a paginação */
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .page-numbers {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 </style>
