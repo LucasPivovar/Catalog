@@ -1,7 +1,4 @@
 <template>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <div class="main">
     <section class="models grid">
        <div 
@@ -225,10 +222,36 @@ export default {
 }
 </script>
 
+```css
 <style scoped>
-/* Estilos gerais */
-/* Corpo da pagina */
-.main{
+.main {
+  /* Cores primárias e variantes */
+  --primary-color: rgb(243, 80, 80);     /* Vermelho principal usado em destaque e botões */
+  --primary-hover: rgb(209, 13, 13);     /* Tom mais escuro para efeitos hover */
+  
+  /* Cores de fundo */
+  --dark-bg: rgb(37, 37, 37);            /* Fundo escuro para cards e botões */
+  --darker-bg: rgb(32, 32, 32);          /* Fundo escuro para modais e containers */
+  --model-bg: rgb(128, 125, 125);        /* Fundo cinza para os cards de modelo */
+  --modal-overlay: rgba(0, 0, 0, 0.7);   /* Sobreposição escura para modais */
+  
+  /* Cores de texto */
+  --text-color: rgb(255, 255, 255);      /* Branco para texto principal */
+  --text-light: rgb(180, 180, 180);      /* Cinza claro para texto secundário */
+  
+  /* Cores premium */
+  --gold: gold;                          /* Dourado para elementos premium */
+  --gold-shadow: rgba(255, 215, 0, 0.7); /* Sombra dourada para elementos premium */
+  
+  /* Cores de plataformas sociais */
+  --whatsapp: rgb(91, 199, 108);         /* Verde WhatsApp */
+  --whatsapp-hover: rgb(59, 133, 70);    /* Verde escuro para hover */
+  --telegram: rgb(47, 93, 185);          /* Azul Telegram */
+  --telegram-hover: rgb(24, 55, 116);    /* Azul escuro para hover */
+  --instagram-gradient: linear-gradient(to right, rgb(240, 163, 255), rgb(243, 80, 80)); /* Gradiente Instagram */
+  --instagram-hover: linear-gradient(to right, rgb(230, 112, 253), rgb(238, 72, 72));   /* Gradiente hover */
+
+  /* Estrutura principal */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,6 +259,10 @@ export default {
   width: 100%;
 }
 
+/***************************************
+ * ESTRUTURA PRINCIPAL
+ ***************************************/
+/* Grid de modelos */
 .models.grid {
   display: flex;
   justify-content: center;
@@ -248,11 +275,14 @@ export default {
   padding: 20px;
 }
 
-/* Estilos para cada modelo */
+/***************************************
+ * CARDS DE MODELOS
+ ***************************************/
+/* Estilo básico do card */
 .model {
   width: 250px;
   height: 444px;
-  background-color: rgb(128, 125, 125);
+  background-color: var(--model-bg);
   position: relative;
   overflow: hidden;
   border-radius: 15px;
@@ -260,29 +290,28 @@ export default {
   margin: 0; 
 }
 
-.model:hover{
+.model:hover {
   box-shadow: 0 10px 10px rgba(145, 0, 0, 0.2);
   animation: bottom-shadow 0.5s ease-in-out;
 }
 
-.model img{
+.model img {
   width: 100%;
   height: 320px;
   transition: transform 0.5s;
   object-fit: cover;
 }
 
-.model_img:hover{
+.model_img:hover {
   transform: scale(1.05);
   transition: transform 0.5s;
 }
 
-
+/* Estilo para cards premium */
 .model.premium {
   position: relative;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-  border: 2px solid gold;
-  
+  box-shadow: 0 0 15px var(--gold-shadow);
+  border: 2px solid var(--gold);
   animation: premium-blink 1s infinite;
 }
 
@@ -294,7 +323,7 @@ export default {
   right: -2px;
   bottom: -2px;
   border-radius: 17px; 
-  background: linear-gradient(45deg, gold, #ff9900, #ffcc00, gold);
+  background: linear-gradient(45deg, var(--gold), #ff9900, #ffcc00, var(--gold));
   background-size: 400% 400%;
   z-index: -1;
 }
@@ -304,7 +333,7 @@ export default {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: gold;
+  background-color: var(--gold);
   z-index: 1;
   border-radius: 50%;
   width: 40px;
@@ -314,34 +343,35 @@ export default {
   align-items: center;
 }
 
-.model_info{
+/* Informações sobre o modelo */
+.model_info {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgb(37, 37, 37);
+  background-color: var(--dark-bg);
   height: 124px;
-  color: rgb(255, 255, 255);  
+  color: var(--text-color);  
   padding: 20px 10px;
   text-align: left;
   font-family: "Roboto";
   font-size: 13px;
 }
 
-.model_info p{
+.model_info p {
   font-size: 15px;
   font-weight: 300;
-  color: rgb(180, 180, 180);
+  color: var(--text-light);
 }
 
-.carrer{
+.carrer {
   display: flex;
   gap: 1rem;
 }
 
-span{
-  background: rgb(243, 80, 80);
-  color: white;
+span {
+  background: var(--primary-color);
+  color: var(--text-color);
   padding: 5px 12px;
   font-size: 12px;
   font-weight: 400;
@@ -350,7 +380,9 @@ span{
   margin-top: 1rem;
 }
 
-/* Paginação */
+/***************************************
+ * SISTEMA DE PAGINAÇÃO
+ ***************************************/
 .pagination {
   display: flex;
   justify-content: center;
@@ -360,9 +392,10 @@ span{
   gap: 15px;
 }
 
+/* Botões de navegação (anterior/próximo) */
 .pagination-button {
-  background-color: rgb(37, 37, 37);
-  color: white;
+  background-color: var(--dark-bg);
+  color: var(--text-color);
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -372,7 +405,7 @@ span{
 }
 
 .pagination-button:hover:not(:disabled) {
-  background-color: rgb(243, 80, 80);
+  background-color: var(--primary-color);
 }
 
 .pagination-button:disabled {
@@ -391,8 +424,8 @@ span{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(37, 37, 37);
-  color: white;
+  background-color: var(--dark-bg);
+  color: var(--text-color);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -405,28 +438,31 @@ span{
 }
 
 .page-number.active {
-  background-color: rgb(243, 80, 80);
+  background-color: var(--primary-color);
   font-weight: bold;
 }
 
-/* Modal */
-
+/***************************************
+ * MODAL DE DETALHES
+ ***************************************/
+/* Container do modal */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--modal-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  overflow: auto; /* Enable scrolling for the entire modal */
+  overflow: auto; /* Permite rolagem no modal */
 }
 
+/* Conteúdo do modal */
 .modal_container {
-  background: rgb(32, 32, 32);
+  background: var(--darker-bg);
   border-radius: 8px;
   max-width: 900px;
   height: 600px;
@@ -437,6 +473,7 @@ span{
   flex-direction: row;
 }
 
+/* Seção de galeria de imagens */
 .model_galery {
   display: flex;
   flex-direction: column;
@@ -444,19 +481,16 @@ span{
   height: 100%;
   overflow: hidden;
   border-radius: 15px;
-
 }
 
-.div1{
+.div1 {
   width: 100%;
   height: 70%;
   object-fit: cover;
   padding: 20px;
   border-radius: 30px;
 }
-
-
-.galery_footer{
+.galery_footer {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -465,7 +499,8 @@ span{
   gap: 20px;
 }
 
-.img_preview{
+/* Miniaturas de imagens */
+.img_preview {
   width: 100%;
   object-fit: cover;
   border-radius: 15px;
@@ -478,88 +513,90 @@ span{
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+/* Seção de detalhes do modelo */
+
 .model_details {
   padding: 20px;
   width: 50%;
   height: 100%;
   font-family: "Inter";
+  color: var(--text-color);
 }
 
-.model_details{
-  color: white; 
-}
-
-.model_details h2{
+.model_details h2 {
   font-size: 2rem;
 }
 
-.model_details h3{
+.model_details h3 {
   font-size: 1.5rem;
   margin-top: 2rem;
 }
 
-.model_details p{
-  color: rgb(180, 180, 180);
+.model_details p {
+  color: var(--text-light);
   font-size: 1.1rem;
 }
 
-.modal_carrer{
+.modal_carrer {
   margin-top: 0.5rem;
   gap: 0.5rem;
   display: flex;
 }
 
-.contact{
+/* Seção de contato */
+.contact {
   margin-top: 2rem;
 }
 
-.contact_links{
+.contact_links {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-
 }
 
-.contact_link{
+.contact_link {
   width: 100%;
   text-align: center;
   text-decoration: none;
   padding: 15px;
   border-radius: 25px;
-  color: white;
+  color: var(--text-color);
   transition: all 0.3s ease;
 }
 
-/* Links de contato */
-
-.whatsapp{
-  background: rgb(91, 199, 108);
+/***************************************
+ * LINKS DE PLATAFORMAS SOCIAIS
+ ***************************************/
+/* WhatsApp */
+.whatsapp {
+  background: var(--whatsapp);
 }
 
-.whatsapp:hover{
-  background: rgb(59, 133, 70);
+.whatsapp:hover {
+  background: var(--whatsapp-hover);
 }
 
-.telegram{
-  background: rgb(47, 93, 185);
+/* Telegram */
+.telegram {
+  background: var(--telegram);
 }
 
-.telegram:hover{
-  background: rgb(24, 55, 116);
+.telegram:hover {
+  background: var(--telegram-hover);
 }
 
-.instagram{
-  background: linear-gradient(to right, rgb(240, 163, 255), rgb(243, 80, 80));
+/* Instagram */
+.instagram {
+  background: var(--instagram-gradient);
 }
 
-.instagram:hover{
-  background: linear-gradient(to right, rgb(230, 112, 253), rgb(238, 72, 72));
+.instagram:hover {
+  background: var(--instagram-hover);
 }
 
-/* Botão de fechar a modal */
-
+/* Botão de fechar o modal */
 .close_button {
   position: absolute;
   display: flex;
@@ -573,14 +610,18 @@ span{
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background: rgb(253, 68, 68);
-  color: white;
+  background: var(--primary-color);
+  color: var(--text-color);
 }
 
 .close_button:hover {
-  background: rgb(209, 13, 13);
+  background: var(--primary-hover);
 }
 
+/***************************************
+ * ANIMAÇÕES
+ ***************************************/
+/* Efeito de piscada para elementos premium */
 @keyframes premium-blink {
   0% {
     box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
@@ -593,7 +634,11 @@ span{
   }
 }
 
+/***************************************
+ * RESPONSIVIDADE
+ ***************************************/
 @media (max-width: 768px) {
+  /* Ajustes dos cards para telas menores */
   .model {
     width: 100%;
     height: 400px;
@@ -612,6 +657,7 @@ span{
     gap: 0.5rem;
   }
   
+  /* Ajustes do modal para telas menores */
   .modal {
     align-items: flex-start;
     padding: 10px 0;
@@ -635,9 +681,9 @@ span{
     width: 100%;
     height: auto;
     min-height: 300px;
-    max-height: none; /* Remove height restriction */
+    max-height: none; /* Remove restrição de altura */
     padding: 10px;
-    object-fit: contain; /* Ensure entire image is visible */
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
   }
   
   .galery_footer {
@@ -676,3 +722,4 @@ span{
   }
 }
 </style>
+```
