@@ -1,37 +1,10 @@
 
 .main {
-    /* Cores primárias e variantes */
-    --primary-color: rgb(243, 80, 80);     /* Vermelho principal usado em destaque e botões */
-    --primary-hover: rgb(209, 13, 13);     /* Tom mais escuro para efeitos hover */
-
-    /* Cores de fundo */
-    --dark-bg: rgb(37, 37, 37);            /* Fundo escuro para cards e botões */
-    --darker-bg: rgb(32, 32, 32);          /* Fundo escuro para modais e containers */
-    --model-bg: rgb(128, 125, 125);        /* Fundo cinza para os cards de modelo */
-    --modal-overlay: rgba(0, 0, 0, 0.7);   /* Sobreposição escura para modais */
-
-    /* Cores de texto */
-    --text-color: rgb(255, 255, 255);      /* Branco para texto principal */
-    --text-light: rgb(180, 180, 180);      /* Cinza claro para texto secundário */
-
-    /* Cores premium */
-    --gold: gold;                          /* Dourado para elementos premium */
-    --gold-shadow: rgba(255, 215, 0, 0.7); /* Sombra dourada para elementos premium */
-
-    /* Cores de plataformas sociais */
-    --whatsapp: rgb(91, 199, 108);         /* Verde WhatsApp */
-    --whatsapp-hover: rgb(59, 133, 70);    /* Verde escuro para hover */
-    --telegram: rgb(47, 93, 185);          /* Azul Telegram */
-    --telegram-hover: rgb(24, 55, 116);    /* Azul escuro para hover */
-    --instagram-gradient: linear-gradient(to right, rgb(240, 163, 255), rgb(243, 80, 80)); /* Gradiente Instagram */
-    --instagram-hover: linear-gradient(to right, rgb(230, 112, 253), rgb(238, 72, 72));   /* Gradiente hover */
-
     /* Estrutura principal */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
 }
 
 /***************************************
@@ -102,7 +75,7 @@
 }
 
 .model.premium::after {
-    content: url("../premium.svg");
+    content: url("../icons/premium.svg");
     position: absolute;
     top: 10px;
     right: 10px;

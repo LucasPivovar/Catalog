@@ -1,0 +1,238 @@
+/* ========== MAIN CONTAINER ========== */
+.main {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-primary);
+}
+  
+/* ========== CONTENT CONTAINER ========== */
+.content {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-content);
+    border: 1px solid var(--content-border);
+    border-radius: 10px;
+}
+  
+/* ========== TYPOGRAPHY ========== */
+.content h1 {
+    font-size: 2rem;
+    color: var(--title-content);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+  
+p {
+    font-size: 1rem;
+    color: var(--subtitle-content);
+    margin-bottom: 20px;
+}
+  
+/* ========== FORM CONTAINERS ========== */
+.login, .register {
+    width: 100%;
+}
+  
+/* ========== TAB BUTTONS ========== */
+.buttons {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+    gap: 10px;
+    background-color: var(--button-inactive);
+}
+  
+.button {
+    color: var(--text-inactive);
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    width: 50%;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.button-active {
+    background-color: var(--button-active);
+    color: var(--text-color);
+}
+  
+/* ========== FORM GROUPS ========== */
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+  
+label {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 500;
+}
+  
+/* ========== INPUT CONTAINERS ========== */
+.input-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    transition: border 0.2s;
+}
+  
+.input-container:focus-within {
+    border: 1px solid var(--button-active);
+}
+
+/* Icon containers */
+.icon-left, .icon-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.icon-left img{
+    width: 20px;
+}
+  
+.icon-right {
+    cursor: pointer;
+}
+
+/* ========== ICON STYLES ========== */
+.eye-icon {
+    color: var(--text-inactive);
+    transition: color 0.2s;
+}
+  
+.eye-icon:hover {
+    color: var(--text-color);
+}
+  
+/* ========== INPUTS ========== */
+.input-field {
+    flex: 1;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+  
+.input-field:focus {
+    outline: none;
+}
+  
+.input-field::placeholder {
+    color: var(--text-inactive);
+}
+  
+input[type="date"] {
+    position: relative;
+    padding-right: 20px; 
+}
+  
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* ========== CHECKBOX & LINKS ROW ========== */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+  
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+  
+.remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    accent-color: var(--button-active);
+}
+  
+.remember-me label {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--text-inactive);
+    font-weight: normal;
+}
+  
+.forgot-password {
+    font-size: 0.85rem;
+    color: var(--forgot-color);
+    text-decoration: none;
+}
+  
+/* Terms section */
+.terms-container {
+    justify-content: flex-start;
+}
+
+.accept-terms {
+    display: flex;
+    align-items: center;
+}
+
+.accept-terms input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    accent-color: var(--button-active);
+}
+
+.accept-terms label {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--text-inactive);
+    font-weight: normal;
+}
+  
+.terms-link {
+    color: var(--forgot-color);
+    text-decoration: none;
+}
+  
+/* ========== BUTTONS ========== */
+.submit-button {
+    background: var(--button-active);
+    color: var(--text-color);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    font-size: 1rem;
+}

@@ -117,6 +117,7 @@
 <script>
 // Import the CSS directly in the script
 import '@/assets/css/catalog_cards.css';
+import '@/assets/css/global.css';
 
 export default {
   name: 'ModelGallery',
