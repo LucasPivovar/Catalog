@@ -2,13 +2,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  
+  <link rel="stylesheet" href="../assets/css/catalog_cards.css">
   <body>     
     <div class="main">   
       <div class="content">    
         <header>         
           <h1><strong>Studio</strong> Catalog</h1>         
-          <p><span><img src="../assets/people.svg" alt=""></span> {{ modelsCount }} modelos</p>       
+          <p>
+            <img src="../assets/people.svg" alt="">
+             {{ modelsCount }} modelos
+          </p>       
         </header>       
         <catalog-cards          
           ref="catalogCardsRef"         
@@ -125,9 +128,7 @@ export default {
   }    
   
   header p span{     
-    display: flex;     
-    justify-content: center;     
-    align-items: center;   
+    background: transparent;
   }    
   
   header p span img{     
