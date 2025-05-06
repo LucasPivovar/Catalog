@@ -25,9 +25,7 @@
 </template>  
 
 <script>
-import catalogCards from '@/components/catalogCards.vue';
-import '@/assets/css/global.css';
-import '@/assets/css/home_view.css';
+import catalogCards from '@/components/catalogCards.vue'  
 
 export default {   
   name: 'HomeView',   
@@ -77,3 +75,64 @@ export default {
   } 
 } 
 </script>  
+
+<style scoped>
+  .main {
+    --background-primary: rgb(5, 5, 5);
+    --title-strong: rgb(216, 45, 45);
+    --title-header: white;
+  }
+  
+  .main{     
+    width: 100%;     
+    min-height: 100vh;     
+    display: flex;     
+    justify-content: center;     
+    font-family: "inter";   
+    background: var(--background-primary);  
+  }    
+  
+  .content{     
+    width: 100%;     
+    min-height: 100vh;     
+    max-width: 1400px;   
+  }    
+  
+  header{     
+    display: flex;     
+    color: var(--title-header);     
+    align-items: center;     
+    justify-content: space-between;     
+    margin-top: 1rem;     
+    padding: 0 35px;     
+    width: 100%;   
+  }    
+  
+  header h1{     
+    font-weight: 400;     
+    font-size: 1.6rem;   
+  }    
+  
+  header strong{     
+    font-weight: 400;     
+    color: var(--title-strong);   
+  }    
+  
+  header p {     
+    font-size: 1.1rem;     
+    font-weight: 300;     
+    display: flex;     
+    justify-content: center;     
+    flex-direction: row;     
+    align-items: center;     
+    gap: 5px;   
+  }    
+  
+  header p span{     
+    background: transparent;
+  }    
+  
+  header p span img{     
+    width: 25px;   
+  } 
+</style>
