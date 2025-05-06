@@ -23,8 +23,7 @@
   <a href="/access" class="access">Acessar</a>
 </template>  
 
-<script>
-import catalogCards from '@/components/catalogCards.vue'  
+<script>  
 
 export default {   
   name: 'HomeView',   
