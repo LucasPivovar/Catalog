@@ -3,23 +3,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <div class="main">
-    <div class="content">
-      <div class="dashboard-header">
-        <h1><strong>Aura</strong>Pulse</h1>
-        <div class="buttons">
-          <a href="#"
-              @click.prevent="activate_button('profile')"
-              :class="['button', button_activated('profile') ? 'button-active' : '']">
-            <p><img src="../assets/icons/white_people.svg" alt=""> Perfil</p>
-          </a>
+    <div class="dashboard-header">
+      <h1><strong>Aura</strong>Pulse</h1>
+      <div class="buttons">
+        <a href="#"
+            @click.prevent="activate_button('profile')"
+            :class="['button', button_activated('profile') ? 'button-active' : '']">
+          <p><img src="../assets/icons/white_people.svg" alt=""> Perfil</p>
+        </a>
 
-          <a href="#"
-              @click.prevent="activate_button('dashboard')"
-              :class="['button', button_activated('dashboard') ? 'button-active' : '']">
-            dashboard
-          </a>
-        </div>
+        <a href="#"
+            @click.prevent="activate_button('dashboard')"
+            :class="['button', button_activated('dashboard') ? 'button-active' : '']">
+          dashboard
+        </a>
       </div>
+    </div>
+    <div class="content">
+
       
       <!-- Componente dinâmico baseado na aba ativa -->
       <ProfileView v-if="active_tab === 'profile'" />
@@ -99,6 +100,7 @@ export default {
     padding: 8px;
     gap: 10px;
     background-color: var(--btn-secondary);
+    max-width: 300px;
   }
 
   .button {
