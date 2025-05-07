@@ -21,7 +21,6 @@
     </div>
     
     <div class="content">
-      <!-- Componente dinâmico baseado na aba ativa -->
       <ProfileView v-if="active_tab === 'profile'" />
       <DashboardContent v-else />
     </div>
@@ -85,6 +84,7 @@ export default {
     padding: 0 35px;
     width: 100%;
     max-width: 1400px;
+    height: 80px;
   }
 
   .dashboard-header h1{
