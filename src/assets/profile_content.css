@@ -1,0 +1,200 @@
+.main {
+    font-family: 'Inter', sans-serif;
+}
+    
+.profile {
+    background: var(--bg-element-alt);
+    border: 2px solid var(--border-main);
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-content h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.profile-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--border-main);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--bg-element);
+    width: 100%;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: var(--text-secondary);
+}
+
+.submit-button {
+    background: var(--btn-primary);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 10rem;
+}
+
+.submit-button:hover {
+    background: var(--primary-hover);
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+.contact-link {
+    width: 100%;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Photo upload styles */
+
+.photo-input {
+    display: none;
+}
+
+.photo-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.photo-preview {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--bg-element);
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.add-photo {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed var(--border-main);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-photo:hover {
+    border-color: var(--primary);
+}
+
+.add-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+
+.add-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.photo-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        background: var(--bg-element-alt);
+        border: 2px solid var(--border-main);
+        padding: 30px;
+        border-radius: 15px;
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    .photo-preview-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
