@@ -80,7 +80,6 @@ export default {
     color: var(--text-primary);
     align-items: center;
     justify-content: space-between;
-    margin-top: 1rem;
     padding: 0 35px;
     width: 100%;
     max-width: 1400px;
