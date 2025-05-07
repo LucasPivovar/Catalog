@@ -5,15 +5,9 @@
   <div class="main">
     <div class="dashboard-header">
       <h1><strong>Aura</strong>Pulse</h1>
-      
-      <!-- Removed buttons from header to center them below -->
-    </div>
-    
-    <!-- Centered tabs container -->
-    <div class="tabs-container">
       <div class="buttons">
         <a href="#"
-            @click.prevent="activate_button('profile')"
+           @click.prevent="activate_button('profile')"
             :class="['button', button_activated('profile') ? 'button-active' : '']">
           <img src="../assets/icons/white_people.svg" alt=""> Perfil
         </a>
@@ -23,7 +17,7 @@
             :class="['button', button_activated('dashboard') ? 'button-active' : '']">
           dashboard
         </a>
-      </div>
+      </div> 
     </div>
     
     <div class="content">
