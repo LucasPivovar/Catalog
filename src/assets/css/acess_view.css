@@ -83,7 +83,6 @@ p {
 label {
     font-size: 0.95rem;
     color: var(--text-primary);
-    margin-bottom: 8px;
     display: block;
     font-weight: 500;
 }
