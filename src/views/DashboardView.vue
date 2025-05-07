@@ -63,6 +63,8 @@ export default {
     display: flex;
     justify-content: center;
     background: var(--bg-main);
+    width: 100%;
+    min-height: 100vh;
   }
 
   .content{
