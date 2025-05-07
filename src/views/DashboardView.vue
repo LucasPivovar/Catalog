@@ -9,7 +9,7 @@
         <a href="#"
             @click.prevent="activate_button('profile')"
             :class="['button', button_activated('profile') ? 'button-active' : '']">
-          <p><img src="../assets/icons/white_people.svg" alt=""> Perfil</p>
+          <img src="../assets/icons/white_people.svg" alt=""> Perfil
         </a>
 
         <a href="#"
@@ -117,16 +117,6 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100px;
-  }
-
-  .button p{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    color: var(--text-secondary);
-    height: 10px;
-
   }
 
   .button-active {
