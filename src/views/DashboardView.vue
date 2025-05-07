@@ -113,6 +113,7 @@ export default {
     background-color: var(--btn-secondary);
     width: 260px; /* Fixed width based on images */
     justify-content: center;
+    margin: auto 0 auto 0;
   }
 
   .button {
