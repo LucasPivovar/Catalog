@@ -96,6 +96,7 @@ label {
     border: 1px solid var(--border-main);
     border-radius: 5px;
     transition: border 0.2s;
+    position: relative; /* Adicionado para posicionar o input de data oculto */
 }
   
 .input-container:focus-within {
@@ -145,23 +146,29 @@ label {
 .input-field::placeholder {
     color: var(--text-secondary);
 }
-  
-input[type="date"] {
-    position: relative;
-    padding-right: 20px; 
-    font-family: 'inter';
-}
-  
-input[type="date"]::-webkit-calendar-picker-indicator {
+
+/* ========== DATA PICKER OCULTO ========== */
+.hidden-date-input {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
     opacity: 0;
-    cursor: pointer;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  
+  /* Estilo para que o input de data não mostre o ícone do calendar */
+.hidden-date-input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+}
+  
 
 /* ========== CHECKBOX & LINKS ROW ========== */
 .remember-forgot {

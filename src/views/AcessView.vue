@@ -112,6 +112,7 @@
           <label for="cpf">CPF</label>
           <div class="input-container">
             <div class="icon-left">
+              <img src="@/assets/icons/Document.svg" alt="CPF">
             </div>
             <input 
               type="text" 
@@ -119,14 +120,14 @@
               class="input-field" 
               placeholder="000.000.000-00" 
               v-model="registerForm.cpf"
-              v-mask="'###.###.###-##'">
+              @input="formatCPF">
           </div>
         </div>
         
         <!-- Data de Nascimento Field -->
         <div class="form-group">
           <label for="birthdate">Data de Nascimento</label>
-          <div class="input-container">
+          <div class="input-container" @click="openDatePicker">
             <div class="icon-left">
               <img src="@/assets/icons/Calendar.svg" alt="Calendar">
             </div>
@@ -136,7 +137,12 @@
               class="input-field" 
               placeholder="dd/mm/aaaa" 
               v-model="registerForm.birthdate"
-              v-mask="'##/##/####'">
+              readonly>
+            <input 
+              type="date" 
+              id="hidden-date" 
+              class="hidden-date-input" 
+              @change="updateFormattedDate">
           </div>
         </div>
         
@@ -210,6 +216,34 @@ export default {
     register() {
       // Register logic here
       console.log('Register attempt', this.registerForm);
+    },
+    formatCPF() {
+      // Remove caracteres não numéricos
+      let cpf = this.registerForm.cpf.replace(/\D/g, '');
+      
+      // Limita a 11 dígitos
+      cpf = cpf.substring(0, 11);
+      
+      // Aplica a formatação
+      if (cpf.length > 0) {
+        cpf = cpf.replace(/^(\d{3})(\d)/, '$1.$2');
+        cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+        cpf = cpf.replace(/\.(\d{3})(\d)/, '.$1-$2');
+      }
+      
+      this.registerForm.cpf = cpf;
+    },
+    openDatePicker() {
+      // Encontra o input de data oculto e aciona o clique nele
+      document.getElementById('hidden-date').click();
+    },
+    updateFormattedDate(event) {
+      // Atualiza o valor mostrado no campo de texto com formato brasileiro
+      const dateValue = event.target.value; // Formato: yyyy-mm-dd
+      if (dateValue) {
+        const [year, month, day] = dateValue.split('-');
+        this.registerForm.birthdate = `${day}/${month}/${year}`;
+      }
     }
   }
 }
