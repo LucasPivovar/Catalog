@@ -19,7 +19,6 @@
     background: #151515; /* Matching the exact color in your DevTools screenshot */
     border: 1px solid var(--border-main);
     border-radius: 10px;
-    max-height: 800px;
     box-sizing: border-box; /* Ensure padding doesn't add to the width */
 }
   

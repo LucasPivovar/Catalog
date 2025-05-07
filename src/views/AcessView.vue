@@ -1,4 +1,8 @@
 <template>
+  <!-- Google Fonts import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <div class="main">
     <div class="auth-container">
       <!-- Auth Header -->
@@ -27,7 +31,7 @@
           <label for="email">Email</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/mail.svg" alt="Email">
+              <img src="@/assets/icons/Mail.svg" alt="Email">
             </div>
             <input 
               type="email" 
@@ -43,7 +47,7 @@
           <label for="password">Senha</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/lock.svg" alt="Password">
+              <img src="@/assets/icons/Lock.svg" alt="Password">
             </div>
             <input 
               :type="showPassword ? 'text' : 'password'" 
@@ -52,7 +56,6 @@
               placeholder="••••••••" 
               v-model="loginForm.password">
             <div class="icon-right" @click="togglePassword">
-              <img src="@/assets/icons/eye.svg" alt="Show Password" class="eye-icon">
             </div>
           </div>
         </div>
@@ -77,7 +80,7 @@
           <label for="fullName">Nome Completo</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/user.svg" alt="User">
+              <img src="@/assets/icons/User.svg" alt="User">
             </div>
             <input 
               type="text" 
@@ -93,7 +96,7 @@
           <label for="regEmail">Email</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/mail.svg" alt="Email">
+              <img src="@/assets/icons/Mail.svg" alt="Email">
             </div>
             <input 
               type="email" 
@@ -109,7 +112,6 @@
           <label for="cpf">CPF</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/id-card.svg" alt="CPF">
             </div>
             <input 
               type="text" 
@@ -126,7 +128,7 @@
           <label for="birthdate">Data de Nascimento</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/calendar.svg" alt="Calendar">
+              <img src="@/assets/icons/Calendar.svg" alt="Calendar">
             </div>
             <input 
               type="text" 
@@ -143,7 +145,7 @@
           <label for="regPassword">Senha</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/lock.svg" alt="Password">
+              <img src="@/assets/icons/Lock.svg" alt="Password">
             </div>
             <input 
               :type="showPassword ? 'text' : 'password'" 
@@ -152,7 +154,6 @@
               placeholder="••••••••" 
               v-model="registerForm.password">
             <div class="icon-right" @click="togglePassword">
-              <img src="@/assets/icons/eye.svg" alt="Show Password" class="eye-icon">
             </div>
           </div>
         </div>
@@ -176,6 +177,7 @@
 </template>
 
 <script>
+import '@/assets/css/acess_view.css';
 export default {
   name: 'AuthComponent',
   data() {

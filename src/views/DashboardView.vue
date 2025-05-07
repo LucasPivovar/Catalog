@@ -29,7 +29,6 @@
 
 <script>
 // Importe o CSS global no arquivo main.js em vez de aqui
-// import '@/assets/css/global.css';
 
 import ProfileView from '@/components/ProfileContent.vue';
 import DashboardContent from '@/components/DashboardContent.vue';

@@ -201,4 +201,8 @@ textarea {
         margin-right: auto;
     }
 
+    .input-container {
+        width: 100%;
+    }
+
 }
