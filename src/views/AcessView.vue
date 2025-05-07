@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="content">
+    <div class="auth-container">
       <!-- Auth Header -->
       <h1>Crimson Auth</h1>
       <p v-if="activeTab === 'login'">Entre com sua conta para continuar</p>

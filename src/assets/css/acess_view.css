@@ -1,41 +1,42 @@
 /* ========== MAIN CONTAINER ========== */
 .main {
-    /* Updated to not use full height */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background: var(--bg-main);
-    min-height: auto;
     padding: 40px 0;
+    /* Removed min-height and justify-content to prevent stretching */
 }
   
 /* ========== CONTENT CONTAINER ========== */
-.content {
+.auth-container {
     width: 100%;
     max-width: 400px;
     padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: var(--bg-card);
+    background: #151515; /* Matching the exact color in your DevTools screenshot */
     border: 1px solid var(--border-main);
     border-radius: 10px;
+    /* Removed height-related properties */
+    box-sizing: border-box; /* Ensure padding doesn't add to the width */
 }
   
 /* ========== TYPOGRAPHY ========== */
-.content h1 {
+.auth-container h1 {
     font-size: 2rem;
-    color: var(--primary-light);
+    color: #E64C6F; /* Crimson color from your screenshot */
     font-weight: 600;
     margin-bottom: 10px;
+    text-align: center;
 }
   
 p {
     font-size: 1rem;
     color: var(--text-secondary);
     margin-bottom: 20px;
+    text-align: center;
 }
   
 /* ========== FORM CONTAINERS ========== */
@@ -57,7 +58,7 @@ p {
   
 .button {
     color: var(--text-secondary);
-    padding: 5px;
+    padding: 8px 0; /* Slightly increased padding for better height */
     text-align: center;
     text-decoration: none;
     width: 50%;
@@ -70,7 +71,7 @@ p {
 }
   
 .button-active {
-    background-color: var(--btn-primary);
+    background-color: #E64C6F; /* Matching the active tab color in screenshot */
     color: var(--text-primary);
 }
   
@@ -194,7 +195,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   
 .forgot-password {
     font-size: 0.85rem;
-    color: var(--text-accent);
+    color: #E64C6F; /* Matching the link color in screenshot */
     text-decoration: none;
 }
   
@@ -223,13 +224,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
   
 .terms-link {
-    color: var(--text-accent);
+    color: #E64C6F; /* Matching the link color in screenshot */
     text-decoration: none;
 }
   
 /* ========== BUTTONS ========== */
 .submit-button {
-    background: var(--btn-primary);
+    background: #E64C6F; /* Matching the button color in screenshot */
     color: var(--text-primary);
     border: none;
     padding: 12px;
@@ -241,7 +242,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 768px) {
-    .content {
+    .auth-container {
         width: 90%;
         max-width: 400px;
     }
