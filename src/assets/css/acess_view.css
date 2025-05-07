@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--background-primary);
+    background: var(--bg-main);
 }
   
 /* ========== CONTENT CONTAINER ========== */
@@ -17,22 +17,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--background-content);
-    border: 1px solid var(--content-border);
+    background: var(--bg-card);
+    border: 1px solid var(--border-main);
     border-radius: 10px;
 }
   
 /* ========== TYPOGRAPHY ========== */
 .content h1 {
     font-size: 2rem;
-    color: var(--title-content);
+    color: var(--primary-light);
     font-weight: 600;
     margin-bottom: 10px;
 }
   
 p {
     font-size: 1rem;
-    color: var(--subtitle-content);
+    color: var(--text-secondary);
     margin-bottom: 20px;
 }
   
@@ -50,11 +50,11 @@ p {
     overflow: hidden;
     padding: 10px;
     gap: 10px;
-    background-color: var(--button-inactive);
+    background-color: var(--btn-secondary);
 }
   
 .button {
-    color: var(--text-inactive);
+    color: var(--text-secondary);
     padding: 5px;
     text-align: center;
     text-decoration: none;
@@ -68,8 +68,8 @@ p {
 }
   
 .button-active {
-    background-color: var(--button-active);
-    color: var(--text-color);
+    background-color: var(--btn-primary);
+    color: var(--text-primary);
 }
   
 /* ========== FORM GROUPS ========== */
@@ -80,7 +80,7 @@ p {
   
 label {
     font-size: 0.95rem;
-    color: var(--text-color);
+    color: var(--text-primary);
     margin-bottom: 8px;
     display: block;
     font-weight: 500;
@@ -91,14 +91,14 @@ label {
     width: 100%;
     display: flex;
     align-items: center;
-    background: var(--input-bg);
-    border: 1px solid var(--input-border);
+    background: var(--bg-element);
+    border: 1px solid var(--border-main);
     border-radius: 5px;
     transition: border 0.2s;
 }
   
 .input-container:focus-within {
-    border: 1px solid var(--button-active);
+    border: 1px solid var(--primary);
 }
 
 /* Icon containers */
@@ -119,12 +119,12 @@ label {
 
 /* ========== ICON STYLES ========== */
 .eye-icon {
-    color: var(--text-inactive);
+    color: var(--text-secondary);
     transition: color 0.2s;
 }
   
 .eye-icon:hover {
-    color: var(--text-color);
+    color: var(--text-primary);
 }
   
 /* ========== INPUTS ========== */
@@ -134,7 +134,7 @@ label {
     background: transparent;
     border: none;
     font-size: 0.95rem;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
   
 .input-field:focus {
@@ -142,12 +142,13 @@ label {
 }
   
 .input-field::placeholder {
-    color: var(--text-inactive);
+    color: var(--text-secondary);
 }
   
 input[type="date"] {
     position: relative;
     padding-right: 20px; 
+    font-family: 'inter';
 }
   
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -179,19 +180,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 16px;
     height: 16px;
     margin-right: 8px;
-    accent-color: var(--button-active);
+    accent-color: var(--btn-primary);
 }
   
 .remember-me label {
     margin-bottom: 0;
     font-size: 0.85rem;
-    color: var(--text-inactive);
+    color: var(--text-secondary);
     font-weight: normal;
 }
   
 .forgot-password {
     font-size: 0.85rem;
-    color: var(--forgot-color);
+    color: var(--text-accent);
     text-decoration: none;
 }
   
@@ -209,25 +210,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 16px;
     height: 16px;
     margin-right: 8px;
-    accent-color: var(--button-active);
+    accent-color: var(--btn-primary);
 }
 
 .accept-terms label {
     margin-bottom: 0;
     font-size: 0.85rem;
-    color: var(--text-inactive);
+    color: var(--text-secondary);
     font-weight: normal;
 }
   
 .terms-link {
-    color: var(--forgot-color);
+    color: var(--text-accent);
     text-decoration: none;
 }
   
 /* ========== BUTTONS ========== */
 .submit-button {
-    background: var(--button-active);
-    color: var(--text-color);
+    background: var(--btn-primary);
+    color: var(--text-primary);
     border: none;
     padding: 12px;
     border-radius: 5px;
@@ -235,4 +236,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 500;
     width: 100%;
     font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        width: 90%;
+        max-width: 400px;
+    }
+    
 }

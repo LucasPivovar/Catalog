@@ -1,6 +1,4 @@
-
 .main {
-    /* Estrutura principal */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +6,7 @@
 }
 
 /***************************************
-* ESTRUTURA PRINCIPAL
+* MAIN STRUCTURE
 ***************************************/
 .models.grid {
     display: flex;
@@ -23,12 +21,12 @@
 }
 
 /***************************************
-* CARDS DE MODELOS
+* MODEL CARDS
 ***************************************/
 .model {
     width: 250px;
     height: 444px;
-    background-color: var(--model-bg);
+    background-color: var(--bg-element-alt);
     position: relative;
     overflow: hidden;
     border-radius: 15px;
@@ -53,7 +51,7 @@
     transition: transform 0.5s;
 }
 
-/* Estilo para cards premium */
+/* Style for premium cards */
 .model.premium {
     position: relative;
     box-shadow: 0 0 15px var(--gold-shadow);
@@ -89,15 +87,15 @@
     align-items: center;
 }
 
-/* Informações sobre o modelo */
+/* Information about the model */
 .model_info {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--dark-bg);
+    background-color: var(--bg-dark);
     height: 124px;
-    color: var(--text-color);  
+    color: var(--text-primary);  
     padding: 20px 10px;
     text-align: left;
     font-family: "Roboto";
@@ -107,7 +105,7 @@
 .model_info p {
     font-size: 15px;
     font-weight: 300;
-    color: var(--text-light);
+    color: var(--text-secondary);
 }
 
 .carrer {
@@ -116,8 +114,8 @@
 }
 
 span {
-    background: var(--primary-color);
-    color: var(--text-color);
+    background: var(--primary);
+    color: var(--text-primary);
     padding: 5px 12px;
     font-size: 12px;
     font-weight: 400;
@@ -127,7 +125,7 @@ span {
 }
 
 /***************************************
-* SISTEMA DE PAGINAÇÃO
+* PAGINATION SYSTEM
 ***************************************/
 .pagination {
     display: flex;
@@ -138,10 +136,10 @@ span {
     gap: 15px;
 }
 
-/* Botões de navegação (anterior/próximo) */
+/* Navigation buttons (previous/next) */
 .pagination-button {
-    background-color: var(--dark-bg);
-    color: var(--text-color);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -151,7 +149,7 @@ span {
 }
 
 .pagination-button:hover:not(:disabled) {
-    background-color: var(--primary-color);
+    background-color: var(--primary);
 }
 
 .pagination-button:disabled {
@@ -170,8 +168,8 @@ span {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--dark-bg);
-    color: var(--text-color);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -184,12 +182,12 @@ span {
 }
 
 .page-number.active {
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     font-weight: bold;
 }
 
 /***************************************
-* MODAL DE DETALHES
+* DETAILS MODAL
 ***************************************/
 .modal {
     position: fixed;
@@ -197,7 +195,7 @@ span {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--modal-overlay);
+    background: var(--bg-overlay);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -206,7 +204,7 @@ span {
 }
 
 .modal_container {
-    background: var(--darker-bg);
+    background: var(--bg-dark);
     border-radius: 8px;
     max-width: 900px;
     height: 600px;
@@ -252,7 +250,6 @@ span {
 
 .img_preview:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .model_details {
@@ -260,7 +257,7 @@ span {
     width: 50%;
     height: 100%;
     font-family: "Inter";
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .model_details h2 {
@@ -273,7 +270,7 @@ span {
 }
 
 .model_details p {
-    color: var(--text-light);
+    color: var(--text-secondary);
     font-size: 1.1rem;
 }
 
@@ -301,12 +298,12 @@ span {
     text-decoration: none;
     padding: 15px;
     border-radius: 25px;
-    color: var(--text-color);
+    color: var(--text-primary);
     transition: all 0.3s ease;
 }
 
 /***************************************
-* LINKS DE PLATAFORMAS SOCIAIS
+* SOCIAL PLATFORM LINKS
 ***************************************/
 /* WhatsApp */
 .whatsapp {
@@ -328,14 +325,14 @@ span {
 
 /* Instagram */
 .instagram {
-    background: var(--instagram-gradient);
+    background: var(--instagram);
 }
 
 .instagram:hover {
     background: var(--instagram-hover);
 }
 
-/* Botão de fechar o modal */
+/* Close modal button */
 .close_button {
     position: absolute;
     display: flex;
@@ -349,18 +346,14 @@ span {
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    background: var(--primary-color);
-    color: var(--text-color);
-}
-
-.close_button:hover {
-background: var(--primary-hover);
+    background: var(--primary);
+    color: var(--text-primary);
 }
 
 /***************************************
-* ANIMAÇÕES
+* ANIMATIONS
 ***************************************/
-/* Efeito de piscada para elementos premium */
+/* Blinking effect for premium elements */
 @keyframes premium-blink {
 0% {
     box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
@@ -374,10 +367,10 @@ background: var(--primary-hover);
 }
 
     /***************************************
-    * RESPONSIVIDADE
+    * RESPONSIVENESS
     ***************************************/
 @media (max-width: 768px) {
-/* Ajustes dos cards para telas menores */
+/* Adjustments for cards on smaller screens */
     .model {
         width: 100%;
         height: 400px;
@@ -396,7 +389,7 @@ background: var(--primary-hover);
         gap: 0.5rem;
     }
     
-    /* Ajustes do modal para telas menores */
+    /* Modal adjustments for smaller screens */
     .modal {
         align-items: flex-start;
         padding: 10px 0;
@@ -448,7 +441,7 @@ background: var(--primary-hover);
         height: auto;
     }
     
-    /* Responsividade para a paginação */
+    /* Responsiveness for pagination */
     .pagination {
         flex-direction: column;
         gap: 10px;

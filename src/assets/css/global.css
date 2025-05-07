@@ -5,62 +5,56 @@
 }
 
 .main {
-    --background-primary: rgb(5, 5, 5); /* Main background */
-    --title-strong: rgb(216, 45, 45); /* Strong title text color */
-    --title-header: white; /* Header text color */
+    /* COLORS - PRIMARY PALETTE
+    ========================================== */
+    --primary: #d32f4b;           /* Primary accent/brand color */
+    --primary-hover: #c02843;     /* Darker version for hover states */
+    --primary-light: #eb405d;     /* Lighter version for subtle elements */
     
-
-    /*Access View*/
-    /* Background colors */
-    --background-content: #151515;      /* Content container background */
-    --input-bg: #1c1c1c;               /* Input field background */
+    /* COLORS - BACKGROUND
+    ========================================== */
+    --bg-main: rgb(5, 5, 5);      /* Main background color */
+    --bg-card: #151515;           /* Card/content container background */
+    --bg-element: #1c1c1c;        /* Input fields, secondary elements */
+    --bg-element-alt: #252525;    /* Alternative element background */
+    --bg-dark: rgb(32, 32, 32);   /* Darker background for modals */
+    --bg-overlay: rgba(0, 0, 0, 0.7); /* Overlay for modals */
     
-    /* Border colors */
-    --content-border: #333333;         /* Border for content containers */
-    --input-border: #333333;           /* Border for input fields */
+    /* COLORS - BORDERS
+    ========================================== */
+    --border-main: #333333;       /* Primary border color */
     
-    /* Button colors */
-    --button-active: #d32f4b;          /* Active button background (primary accent) */
-    --button-inactive: #333333;        /* Inactive button background */
+    /* COLORS - TEXT
+    ========================================== */
+    --text-primary: #ffffff;      /* Main text color */
+    --text-secondary: #a6a6a6;    /* Secondary text color */
+    --text-accent: #d32f4b;       /* Accent text color (same as primary) */
     
-    /* Text colors */
-    --title-content: #eb405d;          /* Heading text color (secondary accent) */
-    --subtitle-content: #a6a6a6;       /* Subtitle/paragraph text color */
-    --text-color: white;               /* Primary text color */
-    --text-inactive: #a6a69b;          /* Inactive/secondary text color */
-    --forgot-color: #d32f4b;           /* Link text color (matches primary accent) */
+    /* COLORS - BUTTONS
+    ========================================== */
+    --btn-primary: #d32f4b;       /* Primary button background */
+    --btn-secondary: #333333;     /* Secondary button background */
     
-
-    /*Dashboard View*/
-    /* Catalog Cards */
-    --primary-color: rgb(243, 80, 80);     /* Main red used for highlights and buttons */
-    --primary-hover: rgb(209, 13, 13);     /* Darker shade for hover effects */
+    /* COLORS - SOCIAL PLATFORMS
+    ========================================== */
+    --whatsapp: rgb(91, 199, 108);
+    --whatsapp-hover: rgb(59, 133, 70);
+    --telegram: rgb(47, 93, 185);
+    --telegram-hover: rgb(24, 55, 116);
+    --instagram: linear-gradient(to right, rgb(240, 163, 255), rgb(243, 80, 80));
+    --instagram-hover: linear-gradient(to right, rgb(230, 112, 253), rgb(238, 72, 72));
     
-    /* Background colors */
-    --dark-bg: rgb(37, 37, 37);            /* Dark background for cards and buttons */
-    --darker-bg: rgb(32, 32, 32);          /* Darker background for modals and containers */
-    --model-bg: rgb(128, 125, 125);        /* Gray background for model cards */
-    --modal-overlay: rgba(0, 0, 0, 0.7);   /* Dark overlay for modals */
+    /* COLORS - PREMIUM ELEMENTS
+    ========================================== */
+    --gold: gold;
+    --gold-shadow: rgba(255, 215, 0, 0.7);
     
-    /* Text colors */
-    --text-color: rgb(255, 255, 255);      /* White for main text */
-    --text-light: rgb(180, 180, 180);      /* Light gray for secondary text */
+    /* TYPOGRAPHY
+    ========================================== */
+    font-family: 'Inter', sans-serif;
     
-    /* Premium colors */
-    --gold: gold;                          /* Gold for premium elements */
-    --gold-shadow: rgba(255, 215, 0, 0.7); /* Gold shadow for premium elements */
-    
-    /* Social media platform colors */
-    --whatsapp: rgb(91, 199, 108);         /* WhatsApp green */
-    --whatsapp-hover: rgb(59, 133, 70);    /* Dark green for hover */
-    --telegram: rgb(47, 93, 185);          /* Telegram blue */
-    --telegram-hover: rgb(24, 55, 116);    /* Dark blue for hover */
-    --instagram-gradient: linear-gradient(to right, rgb(240, 163, 255), rgb(243, 80, 80)); /* Instagram gradient */
-    --instagram-hover: linear-gradient(to right, rgb(230, 112, 253), rgb(238, 72, 72));   /* Gradient hover */
-
-    /* Layout */
-    font-family: 'inter';
+    /* LAYOUT
+    ========================================== */
     min-height: 100vh;
     width: 100%;
-
 }

@@ -2,7 +2,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/catalog_cards.css">
   <body>     
     <div class="main">   
       <div class="content_home">    
@@ -79,19 +78,9 @@ export default {
 </script>  
 
 <style scoped>
-  .main {
-    --background-primary: rgb(5, 5, 5);
-    --title-strong: rgb(216, 45, 45);
-    --title-header: white;
-  }
-  
-  .main{     
-    width: 100%;     
-    min-height: 100vh;     
-    display: flex;     
-    justify-content: center;     
+  .main{
     font-family: "inter";   
-    background: var(--background-primary);  
+    background: var(--bg-main);
   }    
   
   .content{     
@@ -102,7 +91,7 @@ export default {
   
   header{     
     display: flex;     
-    color: var(--title-header);     
+    color: var(--text-primary);     
     align-items: center;     
     justify-content: space-between;     
     margin-top: 1rem;     
@@ -117,7 +106,7 @@ export default {
   
   header strong{     
     font-weight: 400;     
-    color: var(--title-strong);   
+    color: var(--text-accent);
   }    
   
   header p {     
