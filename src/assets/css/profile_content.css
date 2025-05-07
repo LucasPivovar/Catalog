@@ -17,6 +17,7 @@
     align-items: center;
     margin-bottom: 30px;
     color: var(--text-primary);
+    max-width: 1400px;
 }
 
 .profile-content {

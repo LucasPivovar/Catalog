@@ -102,7 +102,7 @@ export default {
     padding: 8px;
     gap: 10px;
     background-color: var(--btn-secondary);
-    max-width: 300px;
+    max-width: 260px;
   }
 
   .button {
@@ -117,6 +117,15 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100px;
+  }
+
+  .button p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--text-secondary);
+
   }
 
   .button-active {
