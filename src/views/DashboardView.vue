@@ -83,6 +83,7 @@ export default {
 
   .dashboard-header{
     display: flex;
+    flex-direction: row;
     color: var(--text-primary);
     align-items: center;
     justify-content: space-between;
