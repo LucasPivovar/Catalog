@@ -119,12 +119,13 @@ export default {
     width: 100px;
   }
 
-  .button p {
+  .button p{
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
     color: var(--text-secondary);
+    height: 10px;
 
   }
 
