@@ -5,6 +5,12 @@
   <div class="main">
     <div class="dashboard-header">
       <h1><strong>Aura</strong>Pulse</h1>
+      
+      <!-- Removed buttons from header to center them below -->
+    </div>
+    
+    <!-- Centered tabs container -->
+    <div class="tabs-container">
       <div class="buttons">
         <a href="#"
             @click.prevent="activate_button('profile')"
@@ -19,9 +25,8 @@
         </a>
       </div>
     </div>
+    
     <div class="content">
-
-      
       <!-- Componente dinâmico baseado na aba ativa -->
       <ProfileView v-if="active_tab === 'profile'" />
       <DashboardContent v-else />
@@ -61,7 +66,8 @@ export default {
 <style scoped>
   .main{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background: var(--bg-main);
     width: 100%;
     min-height: 100vh;
@@ -72,6 +78,7 @@ export default {
     min-height: 100vh;
     max-width: 1400px;
     background: var(--bg-main);
+    padding-top: 20px;
   }
 
   .dashboard-header{
@@ -82,6 +89,7 @@ export default {
     margin-top: 1rem;
     padding: 0 35px;
     width: 100%;
+    max-width: 1400px;
   }
 
   .dashboard-header h1{
@@ -93,16 +101,24 @@ export default {
     font-weight: 400;
     color: var(--primary);
   }
+  
+  /* New container for the centered tabs */
+  .tabs-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
 
   .buttons {
     display: flex;
-    margin-bottom: 20px;
     border-radius: 5px;
     overflow: hidden;
     padding: 8px;
     gap: 10px;
     background-color: var(--btn-secondary);
-    max-width: 260px;
+    width: 260px; /* Fixed width based on images */
+    justify-content: center;
   }
 
   .button {
@@ -116,7 +132,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 120px; /* Slightly wider buttons */
+    padding: 0 10px;
   }
 
   .button-active {
@@ -126,5 +143,6 @@ export default {
 
   .button img {
     width: 10px;
+    margin-right: 5px;
   }
 </style>

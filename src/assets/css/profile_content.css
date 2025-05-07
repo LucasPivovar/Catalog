@@ -81,6 +81,8 @@ label {
 
 .input-field::placeholder {
     color: var(--text-secondary);
+    font-family: 'inter';
+    font-weight: 400;
 }
 
 .submit-button {
