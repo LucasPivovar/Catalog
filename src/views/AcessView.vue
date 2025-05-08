@@ -56,6 +56,7 @@
               placeholder="••••••••" 
               v-model="loginForm.password">
             <div class="icon-right" @click="togglePassword">
+              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle Password">
             </div>
           </div>
         </div>
@@ -107,7 +108,7 @@
           </div>
         </div>
         
-        <!-- CPF Field - Atualizado -->
+        <!-- CPF Field -->
         <div class="form-group">
           <label for="cpf">CPF</label>
           <div class="input-container">
@@ -124,19 +125,30 @@
           </div>
         </div>
         
-        <!-- Data de Nascimento Field - Usando input type="date" diretamente -->
+        <!-- Data de Nascimento Field - Versão melhorada -->
         <div class="form-group">
           <label for="birthdate">Data de Nascimento</label>
-          <div class="input-container">
+          <div 
+            class="input-container custom-datepicker" 
+            @click="openDatePicker">
             <div class="icon-left">
               <img src="@/assets/icons/Calendar.svg" alt="Calendar">
             </div>
             <input 
+              type="text" 
+              id="birthdate-display" 
+              class="input-field" 
+              placeholder="DD/MM/AAAA" 
+              :value="displayBirthdate"
+              readonly>
+            <!-- Date input real oculto -->
+            <input 
               type="date" 
-              id="birthdate" 
-              class="input-field date-input" 
+              id="birthdate-real" 
+              ref="birthdateInput"
               v-model="registerForm.birthdate"
-              @change="formatBirthdate">
+              class="hidden-date-input"
+              @change="handleDateChange">
           </div>
         </div>
         
@@ -154,6 +166,7 @@
               placeholder="••••••••" 
               v-model="registerForm.password">
             <div class="icon-right" @click="togglePassword">
+              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle Password">
             </div>
           </div>
         </div>
@@ -194,11 +207,11 @@ export default {
         email: '',
         cpf: '', // Valor bruto, apenas números
         birthdate: '', // Formato YYYY-MM-DD para o input nativo
-        formattedBirthdate: '', // Formato DD/MM/YYYY para exibição (se necessário)
         password: '',
         acceptTerms: false
       },
-      formattedCPF: '' // Valor formatado do CPF para exibição
+      formattedCPF: '', // Valor formatado do CPF para exibição
+      displayBirthdate: '' // Data formatada para exibição no campo visual
     }
   },
   methods: {
@@ -214,7 +227,7 @@ export default {
       console.log('Register attempt', this.registerForm);
     },
     
-    // Método atualizado para processar entrada do CPF em tempo real
+    // CPF handling methods
     handleCPFInput(event) {
       // Remove todos os caracteres não numéricos
       const rawValue = event.target.value.replace(/\D/g, '');
@@ -226,7 +239,6 @@ export default {
       this.formatCPF();
     },
     
-    // Método para formatar o CPF no padrão brasileiro
     formatCPF() {
       let cpf = this.registerForm.cpf;
       
@@ -243,21 +255,56 @@ export default {
       }
     },
     
-    // Método para formatar a data quando necessário (opcional)
-    formatBirthdate() {
-      // Este método pode ser usado para criar uma versão formatada da data
-      // se você precisar exibi-la em outro lugar no formato brasileiro
+    // Date picker methods
+    openDatePicker() {
+      // Simula o clique no input nativo de data
+      this.$refs.birthdateInput.click();
+    },
+    
+    handleDateChange() {
+      // Converte a data no formato YYYY-MM-DD para DD/MM/YYYY para exibição
       if (this.registerForm.birthdate) {
         const [year, month, day] = this.registerForm.birthdate.split('-');
-        this.registerForm.formattedBirthdate = `${day}/${month}/${year}`;
+        this.displayBirthdate = `${day}/${month}/${year}`;
+      } else {
+        this.displayBirthdate = '';
       }
+    },
+    
+    // Método para limitar a data máxima selecionável (exemplo: não permitir datas futuras)
+    getMaxDate() {
+      const today = new Date();
+      return today.toISOString().split('T')[0]; // Retorna YYYY-MM-DD
+    }
+  },
+  mounted() {
+    // Definir uma data máxima para o datepicker (opcional)
+    if (this.$refs.birthdateInput) {
+      this.$refs.birthdateInput.max = this.getMaxDate();
     }
   }
 }
 </script>
 
+
 <style>
-/* Estilos para ocultar o indicador de calendário nos navegadores */
+/* Estilos para o date picker personalizado */
+.custom-datepicker {
+  cursor: pointer;
+}
+
+/* Esconde o input nativo de data */
+.hidden-date-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Remove o indicador de calendário nos navegadores */
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none !important;
 }
@@ -270,29 +317,27 @@ input[type="date"]::-webkit-clear-button {
   display: none !important;
 }
 
+/* Estilos para o campo de CPF */
 input[inputmode="numeric"]::-webkit-outer-spin-button,
 input[inputmode="numeric"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  margin: 0;
 }
 
-/* Estilo para o campo de data */
-.date-input {
+/* Garante que o campo de data tenha a aparência consistente em todos navegadores */
+.input-field[readonly] {
+  cursor: pointer;
   color: var(--text-primary) !important;
 }
 
-/* Garantir que o campo de data tenha a aparência consistente em todos navegadores */
-.date-input::-webkit-datetime-edit {
-  padding: 0;
+/* Estilos para as setas do password toggle */
+.icon-right img {
+  width: 20px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
-.date-input::-webkit-datetime-edit-fields-wrapper {
-  background: transparent;
-}
-
-.date-input::-webkit-datetime-edit-text,
-.date-input::-webkit-datetime-edit-month-field,
-.date-input::-webkit-datetime-edit-day-field,
-.date-input::-webkit-datetime-edit-year-field {
-  color: var(--text-primary);
+.icon-right:hover img {
+  opacity: 1;
 }
 </style>
