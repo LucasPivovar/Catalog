@@ -125,24 +125,17 @@
           </div>
         </div>
         
-        <!-- Data de Nascimento Field - Atualizado -->
+        <!-- Data de Nascimento Field - Usando input type="date" diretamente -->
         <div class="form-group">
           <label for="birthdate">Data de Nascimento</label>
-          <div class="input-container" @click="openDatePicker">
+          <div class="input-container">
             <div class="icon-left">
               <img src="@/assets/icons/Calendar.svg" alt="Calendar">
             </div>
             <input 
-              type="text" 
-              id="birthdate" 
-              class="input-field" 
-              placeholder="DD/MM/AAAA" 
-              v-model="registerForm.formattedBirthdate"
-              readonly>
-            <input 
-              ref="hiddenDateInput"
               type="date" 
-              class="hidden-date-input" 
+              id="birthdate" 
+              class="input-field date-input" 
               v-model="registerForm.birthdate"
               @change="formatBirthdate">
           </div>
@@ -202,7 +195,7 @@ export default {
         email: '',
         cpf: '', // Valor bruto, apenas números
         birthdate: '', // Formato YYYY-MM-DD para o input nativo
-        formattedBirthdate: '', // Formato DD/MM/YYYY para exibição
+        formattedBirthdate: '', // Formato DD/MM/YYYY para exibição (se necessário)
         password: '',
         acceptTerms: false
       },
@@ -251,17 +244,10 @@ export default {
       }
     },
     
-    // Método atualizado para abrir o datepicker
-    openDatePicker() {
-      // Aciona o click no input de data oculto usando a referência
-      if (this.$refs.hiddenDateInput) {
-        this.$refs.hiddenDateInput.click();
-        this.$refs.hiddenDateInput.focus();
-      }
-    },
-    
-    // Método para formatar a data quando selecionada
+    // Método para formatar a data quando necessário (opcional)
     formatBirthdate() {
+      // Este método pode ser usado para criar uma versão formatada da data
+      // se você precisar exibi-la em outro lugar no formato brasileiro
       if (this.registerForm.birthdate) {
         const [year, month, day] = this.registerForm.birthdate.split('-');
         this.registerForm.formattedBirthdate = `${day}/${month}/${year}`;
@@ -272,18 +258,48 @@ export default {
 </script>
 
 <style>
-/* Estilos específicos adicionais, se necessário */
-/* Esconde o indicador de calendário em diferentes navegadores */
+/* Estilos para ocultar o indicador de calendário nos navegadores */
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none !important;
-  opacity: 0;
 }
+
 input[type="date"]::-webkit-inner-spin-button { 
   display: none !important;
-  opacity: 0;
 }
+
 input[type="date"]::-webkit-clear-button {
   display: none !important;
-  opacity: 0;
+}
+
+/* Certificando-se de que os campos numéricos não mostrem setas */
+input[inputmode="numeric"] {
+  -moz-appearance: textfield;
+}
+
+input[inputmode="numeric"]::-webkit-outer-spin-button,
+input[inputmode="numeric"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Estilo para o campo de data */
+.date-input {
+  color: var(--text-primary) !important;
+}
+
+/* Garantir que o campo de data tenha a aparência consistente em todos navegadores */
+.date-input::-webkit-datetime-edit {
+  padding: 0;
+}
+
+.date-input::-webkit-datetime-edit-fields-wrapper {
+  background: transparent;
+}
+
+.date-input::-webkit-datetime-edit-text,
+.date-input::-webkit-datetime-edit-month-field,
+.date-input::-webkit-datetime-edit-day-field,
+.date-input::-webkit-datetime-edit-year-field {
+  color: var(--text-primary);
 }
 </style>
