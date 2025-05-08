@@ -1,174 +1,344 @@
 <template>
-    <div class="main">
-      <div class="profile">
-        <div class="profile-header">
-          <h2>Configurações de Perfil</h2>
-        </div>
-        <div class="profile-content">
-          <div class="profile-form">
-            <h3>Informações Pessoais</h3>
-            <p>Atualize suas informações de perfil</p>
-            <div class="form-group">
-                <label for="name">Nome Exibido</label>
-                <div class="input-container">
-                    <input type="text" id="name" class="input-field" placeholder="Seu nome" />
-                </div>
+  <!-- Google Fonts import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <div class="main">
+    <div class="auth-container">
+      <!-- Auth Header -->
+      <h1>Crimson Auth</h1>
+      <p v-if="activeTab === 'login'">Entre com sua conta para continuar</p>
+      <p v-else>Crie sua conta para começar</p>
+      
+      <!-- Tab Buttons -->
+      <div class="buttons">
+        <a href="#" 
+          @click.prevent="activeTab = 'login'" 
+          :class="['button', activeTab === 'login' ? 'button-active' : '']">
+          Login
+        </a>
+        <a href="#" 
+          @click.prevent="activeTab = 'register'" 
+          :class="['button', activeTab === 'register' ? 'button-active' : '']">
+          Cadastro
+        </a>
+      </div>
+      
+      <!-- Login Form -->
+      <div v-if="activeTab === 'login'" class="login">
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-container">
+            <div class="icon-left">
+              <img src="@/assets/icons/Mail.svg" alt="Email">
             </div>
-            
-            <div class="form-group">
-                <label for="bio">Biografia</label>
-                <div class="input-container">
-                    <textarea id="bio" class="input-field" placeholder="Conte nos um pouco sobre você"></textarea>
-                </div>
-            </div>
-    
-            <!-- Contact links -->
-            <div class="contact-links">
-                <div class="contact-link">
-                    <label for="whatsapp">WhatsApp</label>
-                    <div class="input-container">
-                        <input type="text" placeholder="+55 (00) 00000-0000" id="whatsapp" class="input-field">
-                    </div>
-                </div>
-    
-                <div class="contact-link">
-                    <label for="telegram">Telegram</label>
-                    <div class="input-container">
-                        <input type="text" placeholder="@usuário" id="telegram" class="input-field">
-                    </div>    
-                </div>
-    
-                <div class="contact-link">
-                    <label for="instagram">Instagram</label>
-                    <div class="input-container">
-                        <input type="text" placeholder="Link do perfil" id="instagram" class="input-field">
-                    </div>
-                </div>
-            </div>
-            <button class="submit-button red">Salvar Alterações</button>
-          </div>  
-    
-          <div class="profile-form">
-            <div class="form-group">
-                <h3>Fotos</h3>
-                <p>Adicione até 10 fotos ao seu perfil</p>
-                <div class="input-container">
-                    <input 
-                      type="file" 
-                      id="photos" 
-                      ref="photoInput"
-                      class="photo-input" 
-                      @change="handlePhotoUpload" 
-                      accept="image/*"
-                      multiple
-                      :disabled="photos.length >= 10"
-                    >
-                </div>
-                
-                <!-- Preview das fotos -->
-                <div class="photo-preview-container">
-                  <div v-for="(photo, index) in photos" :key="index" class="photo-preview" @click="removePhoto(index)">
-                    <img :src="photo.url" alt="Preview" class="preview-image">
-                  </div>
-                  
-                  <!-- Botão para adicionar mais fotos -->
-                  <label for="photos" class="photo-preview add-photo" v-if="photos.length < 10">
-                    <div class="add-icon">+</div>
-                    <div class="add-text">Adicionar</div>
-                  </label>
-                </div>
-                <p>{{ photos.length }}/10 fotos adicionadas</p>
-            </div>
-          </div>
-    
-          <div class="profile-form">
-            <div class="form-group">
-                <label for="password">Nova Senha</label>
-                <div class="input-container">
-                  <input type="text" class="input-field" placeholder="Digite sua nova senha" id="password">
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <label for="confirm-password">Confirmar Senha</label>
-                <div class="input-container">
-                  <input type="text" class="input-field" placeholder="Confirme sua nova senha" id="confirm-password">
-                </div>
-            </div>
-            <button class="submit-button red">Alterar Senha</button>
+            <input 
+              type="email" 
+              id="email" 
+              class="input-field" 
+              placeholder="seu@email.com" 
+              v-model="loginForm.email">
           </div>
         </div>
+        
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <div class="input-container">
+            <div class="icon-left">
+              <img src="@/assets/icons/Lock.svg" alt="Password">
+            </div>
+            <input 
+              :type="showPassword ? 'text' : 'password'" 
+              id="password" 
+              class="input-field" 
+              placeholder="••••••••" 
+              v-model="loginForm.password">
+            <div class="icon-right" @click="togglePassword">
+              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle Password">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Remember Me & Forgot Password -->
+        <div class="remember-forgot">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" v-model="loginForm.remember">
+            <label for="remember">Lembrar de mim</label>
+          </div>
+          <a href="#" class="forgot-password">Esqueceu a senha?</a>
+        </div>
+        
+        <!-- Submit Button -->
+        <button class="submit-button" @click="login">Entrar</button>
+      </div>
+      
+      <!-- Register Form -->
+      <div v-else class="register">
+        <!-- Nome Completo Field -->
+        <div class="form-group">
+          <label for="fullName">Nome Completo</label>
+          <div class="input-container">
+            <div class="icon-left">
+              <img src="@/assets/icons/User.svg" alt="User">
+            </div>
+            <input 
+              type="text" 
+              id="fullName" 
+              class="input-field" 
+              placeholder="Seu nome completo" 
+              v-model="registerForm.fullName">
+          </div>
+        </div>
+        
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <div class="input-container">
+            <div class="icon-left">
+              <img src="@/assets/icons/Mail.svg" alt="Email">
+            </div>
+            <input 
+              type="email" 
+              id="regEmail" 
+              class="input-field" 
+              placeholder="seu@email.com" 
+              v-model="registerForm.email">
+          </div>
+        </div>
+        
+        <!-- CPF Field -->
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <div class="input-container">
+            <div class="icon-left">
+              <img src="@/assets/icons/Document.svg" alt="Document">
+            </div>
+            <input 
+              type="text" 
+              inputmode="numeric"
+              id="cpf" 
+              class="input-field" 
+              placeholder="000.000.000-00" 
+              v-model="formattedCPF"
+              @input="handleCPFInput">
+          </div>
+        </div>
+        
+        <!-- Data de Nascimento Field - Versão melhorada -->
+        <div class="form-group">
+          <label for="birthdate">Data de Nascimento</label>
+          <div 
+            class="input-container custom-datepicker" 
+            @click="openDatePicker">
+            <div class="icon-left">
+              <img src="@/assets/icons/Calendar.svg" alt="Calendar">
+            </div>
+            <input 
+              type="text" 
+              id="birthdate-display" 
+              class="input-field" 
+              placeholder="DD/MM/AAAA" 
+              :value="displayBirthdate"
+              readonly>
+            <!-- Date input real oculto -->
+            <input 
+              type="date" 
+              id="birthdate-real" 
+              ref="birthdateInput"
+              v-model="registerForm.birthdate"
+              class="hidden-date-input"
+              @change="handleDateChange">
+          </div>
+        </div>
+        
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="regPassword">Senha</label>
+          <div class="input-container">
+            <div class="icon-left">
+              <img src="@/assets/icons/Lock.svg" alt="Password">
+            </div>
+            <input 
+              :type="showPassword ? 'text' : 'password'" 
+              id="regPassword" 
+              class="input-field" 
+              placeholder="••••••••" 
+              v-model="registerForm.password">
+            <div class="icon-right" @click="togglePassword">
+              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle Password">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Terms and Conditions -->
+        <div class="remember-forgot terms-container">
+          <div class="accept-terms">
+            <input type="checkbox" id="terms" v-model="registerForm.acceptTerms">
+            <label for="terms">
+              Eu aceito os <a href="#" class="terms-link">Termos de Uso</a> e 
+              <a href="#" class="terms-link">Política de Privacidade</a>
+            </label>
+          </div>
+        </div>
+        
+        <!-- Submit Button -->
+        <button class="submit-button" @click="register">Criar Conta</button>
       </div>
     </div>
-  </template>
-  
-  <script>
-  import '@/assets/css/global.css';
-  import '@/assets/css/profile_content.css';
-  
-  export default {
-    name: 'ProfileView',
-    data() {
-      return {
-        showPassword: false,
-        photos: [],
-        maxPhotos: 10
+  </div>
+</template>
+
+<script>
+import '@/assets/css/acess_view.css';
+export default {
+  name: 'AuthComponent',
+  data() {
+    return {
+      activeTab: 'login',
+      showPassword: false,
+      loginForm: {
+        email: '',
+        password: '',
+        remember: false
+      },
+      registerForm: {
+        fullName: '',
+        email: '',
+        cpf: '', // Valor bruto, apenas números
+        birthdate: '', // Formato YYYY-MM-DD para o input nativo
+        password: '',
+        acceptTerms: false
+      },
+      formattedCPF: '', // Valor formatado do CPF para exibição
+      displayBirthdate: '' // Data formatada para exibição no campo visual
+    }
+  },
+  methods: {
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+    },
+    login() {
+      // Login logic here
+      console.log('Login attempt', this.loginForm);
+    },
+    register() {
+      // Register logic here
+      console.log('Register attempt', this.registerForm);
+    },
+    
+    // CPF handling methods
+    handleCPFInput(event) {
+      // Remove todos os caracteres não numéricos
+      const rawValue = event.target.value.replace(/\D/g, '');
+      
+      // Armazena o CPF bruto (apenas números)
+      this.registerForm.cpf = rawValue.substring(0, 11);
+      
+      // Formata o CPF para exibição
+      this.formatCPF();
+    },
+    
+    formatCPF() {
+      let cpf = this.registerForm.cpf;
+      
+      // Aplica a formatação de acordo com o comprimento
+      if (cpf.length <= 3) {
+        this.formattedCPF = cpf;
+      } else if (cpf.length <= 6) {
+        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3);
+      } else if (cpf.length <= 9) {
+        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + cpf.substring(6);
+      } else {
+        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + 
+                           cpf.substring(6, 9) + '-' + cpf.substring(9, 11);
       }
     },
-    methods: {
-      handlePhotoUpload(event) {
-        const files = event.target.files;
-        
-        if (!files.length) return;
-        
-        // Verifica se ainda pode adicionar mais fotos
-        const remainingSlots = this.maxPhotos - this.photos.length;
-        if (remainingSlots <= 0) {
-          alert('Você já atingiu o limite máximo de 10 fotos.');
-          return;
-        }
-        
-        // Limita a quantidade de arquivos que podem ser adicionados
-        const filesToProcess = Array.from(files).slice(0, remainingSlots);
-        
-        // Processa cada arquivo
-        filesToProcess.forEach(file => {
-          // Verifica se é uma imagem
-          if (!file.type.match('image.*')) {
-            alert('Por favor, selecione apenas arquivos de imagem.');
-            return;
-          }
-          
-          // Cria URL temporária para preview
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            this.photos.push({
-              file: file,
-              url: e.target.result,
-              name: file.name
-            });
-          };
-          reader.readAsDataURL(file);
-        });
-        
-        // Limpa o input file para permitir selecionar os mesmos arquivos novamente
-        this.$refs.photoInput.value = '';
-      },
-      
-      removePhoto(index) {
-        this.photos.splice(index, 1);
-      },
-      
-      uploadPhotos() {
-        // Esta função seria usada para enviar as fotos para o servidor
-        const formData = new FormData();
-        
-        this.photos.forEach((photo, index) => {
-          formData.append(`photo${index}`, photo.file);
-        });
-        
-        console.log('Fotos prontas para upload:', this.photos);
+    
+    // Date picker methods
+    openDatePicker() {
+      // Simula o clique no input nativo de data
+      this.$refs.birthdateInput.click();
+    },
+    
+    handleDateChange() {
+      // Converte a data no formato YYYY-MM-DD para DD/MM/YYYY para exibição
+      if (this.registerForm.birthdate) {
+        const [year, month, day] = this.registerForm.birthdate.split('-');
+        this.displayBirthdate = `${day}/${month}/${year}`;
+      } else {
+        this.displayBirthdate = '';
       }
+    },
+    
+    // Método para limitar a data máxima selecionável (exemplo: não permitir datas futuras)
+    getMaxDate() {
+      const today = new Date();
+      return today.toISOString().split('T')[0]; // Retorna YYYY-MM-DD
+    }
+  },
+  mounted() {
+    // Definir uma data máxima para o datepicker (opcional)
+    if (this.$refs.birthdateInput) {
+      this.$refs.birthdateInput.max = this.getMaxDate();
     }
   }
-  </script>
+}
+</script>
+
+
+<style>
+/* Estilos para o date picker personalizado */
+.custom-datepicker {
+  cursor: pointer;
+}
+
+/* Esconde o input nativo de data */
+.hidden-date-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Remove o indicador de calendário nos navegadores */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+input[type="date"]::-webkit-inner-spin-button { 
+  display: none !important;
+}
+
+input[type="date"]::-webkit-clear-button {
+  display: none !important;
+}
+
+/* Estilos para o campo de CPF */
+input[inputmode="numeric"]::-webkit-outer-spin-button,
+input[inputmode="numeric"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Garante que o campo de data tenha a aparência consistente em todos navegadores */
+.input-field[readonly] {
+  cursor: pointer;
+  color: var(--text-primary) !important;
+}
+
+/* Estilos para as setas do password toggle */
+.icon-right img {
+  width: 20px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.icon-right:hover img {
+  opacity: 1;
+}
+</style>
