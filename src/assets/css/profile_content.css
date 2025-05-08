@@ -181,6 +181,14 @@ textarea {
     z-index: -1;
 }
 
+.error-message {
+    color: #e53935;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+  
+
 @media screen and (max-width: 768px) {
     .profile {
         background: var(--bg-element-alt);
