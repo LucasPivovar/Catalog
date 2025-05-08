@@ -113,7 +113,6 @@
           <label for="cpf">CPF</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/Document.svg" alt="Document">
             </div>
             <input 
               type="text" 
