@@ -1,14 +1,11 @@
 <template>
   <!-- Google Fonts import -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <div class="main">
     <div class="auth-container">
       <!-- Auth Header -->
       <h1>Crimson Auth</h1>
-      <p v-if="activeTab === 'login'">Entre com sua conta para continuar</p>
-      <p v-else>Crie sua conta para começar</p>
+      <p>{{ activeTab === 'login' ? 'Entre com sua conta para continuar' : 'Crie sua conta para começar' }}</p>
       
       <!-- Tab Buttons -->
       <div class="buttons">
@@ -56,7 +53,7 @@
               placeholder="••••••••" 
               v-model="loginForm.password">
             <div class="icon-right" @click="togglePassword">
-              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle Password">
+              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle">
             </div>
           </div>
         </div>
@@ -112,8 +109,6 @@
         <div class="form-group">
           <label for="cpf">CPF</label>
           <div class="input-container">
-            <div class="icon-left">
-            </div>
             <input 
               type="text" 
               inputmode="numeric"
@@ -125,30 +120,25 @@
           </div>
         </div>
         
-        <!-- Data de Nascimento Field - Versão melhorada -->
+        <!-- Data de Nascimento Field -->
         <div class="form-group">
           <label for="birthdate">Data de Nascimento</label>
-          <div 
-            class="input-container custom-datepicker" 
-            @click="openDatePicker">
+          <div class="input-container" @click="$refs.birthdateInput.click()">
             <div class="icon-left">
               <img src="@/assets/icons/Calendar.svg" alt="Calendar">
             </div>
             <input 
               type="text" 
-              id="birthdate-display" 
               class="input-field" 
               placeholder="DD/MM/AAAA" 
               :value="displayBirthdate"
               readonly>
-            <!-- Date input real oculto -->
             <input 
               type="date" 
-              id="birthdate-real" 
               ref="birthdateInput"
               v-model="registerForm.birthdate"
               class="hidden-date-input"
-              @change="handleDateChange">
+              @change="formatDate">
           </div>
         </div>
         
@@ -166,13 +156,13 @@
               placeholder="••••••••" 
               v-model="registerForm.password">
             <div class="icon-right" @click="togglePassword">
-              <img :src="showPassword ? '@/assets/icons/EyeOff.svg' : '@/assets/icons/Eye.svg'" alt="Toggle Password">
+              <img :src="showPassword ? '@/assets/icons/hide.png' : '@/assets/icons/Eye.svg'" alt="Toggle">
             </div>
           </div>
         </div>
         
         <!-- Terms and Conditions -->
-        <div class="remember-forgot terms-container">
+        <div class="remember-forgot">
           <div class="accept-terms">
             <input type="checkbox" id="terms" v-model="registerForm.acceptTerms">
             <label for="terms">
@@ -191,6 +181,7 @@
 
 <script>
 import '@/assets/css/acess_view.css';
+
 export default {
   name: 'AuthComponent',
   data() {
@@ -205,13 +196,13 @@ export default {
       registerForm: {
         fullName: '',
         email: '',
-        cpf: '', // Valor bruto, apenas números
-        birthdate: '', // Formato YYYY-MM-DD para o input nativo
+        cpf: '',
+        birthdate: '',
         password: '',
         acceptTerms: false
       },
-      formattedCPF: '', // Valor formatado do CPF para exibição
-      displayBirthdate: '' // Data formatada para exibição no campo visual
+      formattedCPF: '',
+      displayBirthdate: ''
     }
   },
   methods: {
@@ -219,68 +210,36 @@ export default {
       this.showPassword = !this.showPassword;
     },
     login() {
-      // Login logic here
       console.log('Login attempt', this.loginForm);
     },
     register() {
-      // Register logic here
       console.log('Register attempt', this.registerForm);
     },
-    
-    // CPF handling methods
     handleCPFInput(event) {
-      // Remove todos os caracteres não numéricos
       const rawValue = event.target.value.replace(/\D/g, '');
-      
-      // Armazena o CPF bruto (apenas números)
       this.registerForm.cpf = rawValue.substring(0, 11);
       
-      // Formata o CPF para exibição
-      this.formatCPF();
-    },
-    
-    formatCPF() {
-      let cpf = this.registerForm.cpf;
-      
-      // Aplica a formatação de acordo com o comprimento
-      if (cpf.length <= 3) {
-        this.formattedCPF = cpf;
-      } else if (cpf.length <= 6) {
-        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3);
-      } else if (cpf.length <= 9) {
-        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + cpf.substring(6);
+      if (rawValue.length <= 3) {
+        this.formattedCPF = rawValue;
+      } else if (rawValue.length <= 6) {
+        this.formattedCPF = rawValue.substring(0, 3) + '.' + rawValue.substring(3);
+      } else if (rawValue.length <= 9) {
+        this.formattedCPF = rawValue.substring(0, 3) + '.' + rawValue.substring(3, 6) + '.' + rawValue.substring(6);
       } else {
-        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + 
-                           cpf.substring(6, 9) + '-' + cpf.substring(9, 11);
+        this.formattedCPF = rawValue.substring(0, 3) + '.' + rawValue.substring(3, 6) + '.' + 
+                           rawValue.substring(6, 9) + '-' + rawValue.substring(9, 11);
       }
     },
-    
-    // Date picker methods
-    openDatePicker() {
-      // Simula o clique no input nativo de data
-      this.$refs.birthdateInput.click();
-    },
-    
-    handleDateChange() {
-      // Converte a data no formato YYYY-MM-DD para DD/MM/YYYY para exibição
+    formatDate() {
       if (this.registerForm.birthdate) {
         const [year, month, day] = this.registerForm.birthdate.split('-');
         this.displayBirthdate = `${day}/${month}/${year}`;
-      } else {
-        this.displayBirthdate = '';
       }
-    },
-    
-    // Método para limitar a data máxima selecionável (exemplo: não permitir datas futuras)
-    getMaxDate() {
-      const today = new Date();
-      return today.toISOString().split('T')[0]; // Retorna YYYY-MM-DD
     }
   },
   mounted() {
-    // Definir uma data máxima para o datepicker (opcional)
     if (this.$refs.birthdateInput) {
-      this.$refs.birthdateInput.max = this.getMaxDate();
+      this.$refs.birthdateInput.max = new Date().toISOString().split('T')[0];
     }
   }
 }
