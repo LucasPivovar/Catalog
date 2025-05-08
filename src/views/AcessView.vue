@@ -112,7 +112,6 @@
           <label for="cpf">CPF</label>
           <div class="input-container">
             <div class="icon-left">
-              <img src="@/assets/icons/Document.svg" alt="CPF">
             </div>
             <input 
               type="text" 
@@ -271,15 +270,9 @@ input[type="date"]::-webkit-clear-button {
   display: none !important;
 }
 
-/* Certificando-se de que os campos numéricos não mostrem setas */
-input[inputmode="numeric"] {
-  -moz-appearance: textfield;
-}
-
 input[inputmode="numeric"]::-webkit-outer-spin-button,
 input[inputmode="numeric"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
 /* Estilo para o campo de data */
