@@ -107,7 +107,7 @@
           </div>
         </div>
         
-        <!-- CPF Field -->
+        <!-- CPF Field - Atualizado -->
         <div class="form-group">
           <label for="cpf">CPF</label>
           <div class="input-container">
@@ -116,15 +116,16 @@
             </div>
             <input 
               type="text" 
+              inputmode="numeric"
               id="cpf" 
               class="input-field" 
               placeholder="000.000.000-00" 
-              v-model="registerForm.cpf"
-              @input="formatCPF">
+              v-model="formattedCPF"
+              @input="handleCPFInput">
           </div>
         </div>
         
-        <!-- Data de Nascimento Field -->
+        <!-- Data de Nascimento Field - Atualizado -->
         <div class="form-group">
           <label for="birthdate">Data de Nascimento</label>
           <div class="input-container" @click="openDatePicker">
@@ -135,14 +136,15 @@
               type="text" 
               id="birthdate" 
               class="input-field" 
-              placeholder="dd/mm/aaaa" 
-              v-model="registerForm.birthdate"
+              placeholder="DD/MM/AAAA" 
+              v-model="registerForm.formattedBirthdate"
               readonly>
             <input 
+              ref="hiddenDateInput"
               type="date" 
-              id="hidden-date" 
               class="hidden-date-input" 
-              @change="updateFormattedDate">
+              v-model="registerForm.birthdate"
+              @change="formatBirthdate">
           </div>
         </div>
         
@@ -198,11 +200,13 @@ export default {
       registerForm: {
         fullName: '',
         email: '',
-        cpf: '',
-        birthdate: '',
+        cpf: '', // Valor bruto, apenas números
+        birthdate: '', // Formato YYYY-MM-DD para o input nativo
+        formattedBirthdate: '', // Formato DD/MM/YYYY para exibição
         password: '',
         acceptTerms: false
-      }
+      },
+      formattedCPF: '' // Valor formatado do CPF para exibição
     }
   },
   methods: {
@@ -217,34 +221,69 @@ export default {
       // Register logic here
       console.log('Register attempt', this.registerForm);
     },
+    
+    // Método atualizado para processar entrada do CPF em tempo real
+    handleCPFInput(event) {
+      // Remove todos os caracteres não numéricos
+      const rawValue = event.target.value.replace(/\D/g, '');
+      
+      // Armazena o CPF bruto (apenas números)
+      this.registerForm.cpf = rawValue.substring(0, 11);
+      
+      // Formata o CPF para exibição
+      this.formatCPF();
+    },
+    
+    // Método para formatar o CPF no padrão brasileiro
     formatCPF() {
-      // Remove caracteres não numéricos
-      let cpf = this.registerForm.cpf.replace(/\D/g, '');
+      let cpf = this.registerForm.cpf;
       
-      // Limita a 11 dígitos
-      cpf = cpf.substring(0, 11);
-      
-      // Aplica a formatação
-      if (cpf.length > 0) {
-        cpf = cpf.replace(/^(\d{3})(\d)/, '$1.$2');
-        cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
-        cpf = cpf.replace(/\.(\d{3})(\d)/, '.$1-$2');
+      // Aplica a formatação de acordo com o comprimento
+      if (cpf.length <= 3) {
+        this.formattedCPF = cpf;
+      } else if (cpf.length <= 6) {
+        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3);
+      } else if (cpf.length <= 9) {
+        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + cpf.substring(6);
+      } else {
+        this.formattedCPF = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + 
+                           cpf.substring(6, 9) + '-' + cpf.substring(9, 11);
       }
-      
-      this.registerForm.cpf = cpf;
     },
+    
+    // Método atualizado para abrir o datepicker
     openDatePicker() {
-      // Encontra o input de data oculto e aciona o clique nele
-      document.getElementById('hidden-date').click();
+      // Aciona o click no input de data oculto usando a referência
+      if (this.$refs.hiddenDateInput) {
+        this.$refs.hiddenDateInput.click();
+        this.$refs.hiddenDateInput.focus();
+      }
     },
-    updateFormattedDate(event) {
-      // Atualiza o valor mostrado no campo de texto com formato brasileiro
-      const dateValue = event.target.value; // Formato: yyyy-mm-dd
-      if (dateValue) {
-        const [year, month, day] = dateValue.split('-');
-        this.registerForm.birthdate = `${day}/${month}/${year}`;
+    
+    // Método para formatar a data quando selecionada
+    formatBirthdate() {
+      if (this.registerForm.birthdate) {
+        const [year, month, day] = this.registerForm.birthdate.split('-');
+        this.registerForm.formattedBirthdate = `${day}/${month}/${year}`;
       }
     }
   }
 }
 </script>
+
+<style>
+/* Estilos específicos adicionais, se necessário */
+/* Esconde o indicador de calendário em diferentes navegadores */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none !important;
+  opacity: 0;
+}
+input[type="date"]::-webkit-inner-spin-button { 
+  display: none !important;
+  opacity: 0;
+}
+input[type="date"]::-webkit-clear-button {
+  display: none !important;
+  opacity: 0;
+}
+</style>

@@ -148,25 +148,54 @@ label {
 }
 
 /* ========== DATA PICKER OCULTO ========== */
+/* ========== ESTILOS ADICIONAIS PARA CPF E DATEPICKER ========== */
+
+/* Garante que o input de data fique realmente escondido em todos os navegadores */
 .hidden-date-input {
     position: absolute;
     opacity: 0;
     width: 1px;
     height: 1px;
     overflow: hidden;
-  }
-  
-  /* Estilo para que o input de data não mostre o ícone do calendar */
-.hidden-date-input {
-    position: absolute;
-    opacity: 0;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
+    pointer-events: none; /* Isso permite que o clique passe para o elemento abaixo */
+    z-index: -1;
 }
 
+/* Remove o indicador de calendário em navegadores WebKit/Blink */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none !important;
+    opacity: 0 !important;
+}
+
+/* Remove o ícone em navegadores Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+    display: none !important;
+}
+
+/* Remove o ícone em navegadores Microsoft Edge */
+input[type="date"]::-ms-clear {
+    display: none !important;
+}
+
+/* Estilos para o contêiner do datepicker - aumenta a área clicável */
+.input-container[data-datepicker] {
+    cursor: pointer;
+}
+
+/* Estilos para campos de entrada somente leitura */
+.input-field[readonly] {
+    cursor: pointer;
+}
+
+/* Estilos para o campo de CPF com inputmode="numeric" */
+input[inputmode="numeric"] {
+    -moz-appearance: textfield; /* Remove as setas em Firefox */
+}
+
+input[inputmode="numeric"]::-webkit-outer-spin-button,
+input[inputmode="numeric"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
   
 
