@@ -8,48 +8,67 @@
       <div class="buttons">
         <a href="#"
            @click.prevent="activate_button('profile')"
-            :class="['button', button_activated('profile') ? 'button-active' : '']">
+           :class="['button', active_tab === 'profile' ? 'button-active' : '']">
           <img src="../assets/icons/white_people.svg" alt=""> Perfil
         </a>
 
         <a href="#"
-            @click.prevent="activate_button('dashboard')"
-            :class="['button', button_activated('dashboard') ? 'button-active' : '']">
-          dashboard
+           @click.prevent="activate_button('dashboard')"
+           :class="['button', active_tab === 'dashboard' ? 'button-active' : '']">
+          Dashboard
+        </a>
+
+        <a href="#"
+           @click.prevent="activate_button('boost')"
+           :class="['button', active_tab === 'boost' ? 'button-active' : '']">
+          Boost
         </a>
       </div> 
     </div>
     
     <div class="content">
-      <ProfileView v-if="active_tab === 'profile'" />
-      <DashboardContent v-else />
+      <component :is="currentComponent" />
     </div>
   </div>
 </template>
 
 <script>
-// Importe o CSS global no arquivo main.js em vez de aqui
-
 import ProfileView from '@/components/ProfileContent.vue';
 import DashboardContent from '@/components/DashboardContent.vue';
+import BoostContent from '@/components/BoostContent.vue';
 
 export default {
   name: 'DashboardView',
   components: {
     ProfileView,
-    DashboardContent
+    DashboardContent,
+    BoostContent
   },
   data() {
     return {
       active_tab: 'profile',
     }
   },
+  computed: {
+    currentComponent() {
+      switch(this.active_tab) {
+        case 'profile':
+          return ProfileView;
+        case 'dashboard':
+          return DashboardContent;
+        case 'boost':
+          return BoostContent;
+        default:
+          return ProfileView;
+      }
+    }
+  },
   methods: {
-    activate_button(val) {
-      this.active_tab = val;
+    activate_button(tab) {
+      this.active_tab = tab;
     },
-    button_activated(val) {
-      return this.active_tab === val;
+    button_activated(tab) {
+      return this.active_tab === tab;
     }
   }
 }
@@ -95,14 +114,6 @@ export default {
     color: var(--primary);
   }
   
-  /* New container for the centered tabs */
-  .tabs-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-
   .buttons {
     display: flex;
     border-radius: 5px;
@@ -110,7 +121,7 @@ export default {
     padding: 8px;
     gap: 10px;
     background-color: var(--btn-secondary);
-    width: 260px; /* Fixed width based on images */
+    width: 260px;
     justify-content: center;
     margin: auto 0 auto 0;
   }
@@ -126,7 +137,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px; /* Slightly wider buttons */
+    width: 120px;
     padding: 0 10px;
   }
 
