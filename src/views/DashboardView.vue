@@ -121,7 +121,6 @@ export default {
     padding: 8px;
     gap: 10px;
     background-color: var(--btn-secondary);
-    width: 260px;
     justify-content: center;
     margin: auto 0 auto 0;
   }
@@ -149,5 +148,20 @@ export default {
   .button img {
     width: 10px;
     margin-right: 5px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+      height: auto;
+      gap: 20px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      justify-content: center;
+      text-align: center;
+    }
+    
   }
 </style>
