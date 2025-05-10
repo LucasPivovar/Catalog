@@ -9,6 +9,8 @@
     border-radius: 15px;
     width: 100%;
     max-width: 1400px;
+    margin-bottom: 1rem;
+
 }
 
 .profile-header {
@@ -125,7 +127,7 @@ textarea {
 .photo-preview-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 60px;
+    gap: 30px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -196,9 +198,10 @@ textarea {
         padding: 30px;
         border-radius: 15px;
         width: 100%;
-        margin-bottom: 1rem;
         display: flex;
         flex-direction: column;
+        padding: 15px;
+        
     }
 
     .contact-links {
@@ -217,10 +220,14 @@ textarea {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 15px;
     }
 
-    .input-container {
+    .form-group{
         width: 100%;
     }
 
+    input{
+        width: 100%;
+    }
 }

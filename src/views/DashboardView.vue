@@ -162,6 +162,10 @@ export default {
       justify-content: center;
       text-align: center;
     }
+
+    .button{
+      width: 100%;
+    }
     
   }
 </style>

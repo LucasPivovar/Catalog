@@ -93,6 +93,7 @@
             <div class="form-group">
                 <label for="confirm-password">Confirmar Senha</label>
                 <div class="input-container">
+                  <input type="text" class="input-field" placeholder="Digite sua nova senha" id="confirm-password">
                 </div>
             </div>
             <button class="submit-button red">Alterar Senha</button>

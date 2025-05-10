@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <div class="boost-container">
+      <h1 class="section-title">Impulsionamento</h1>
       <div class="boost-content">
-        <h1 class="section-title">Impulsionamento</h1>
         <div class="section-header">
           <h2>Seus Créditos</h2>
           <p class="subtitle">Gerencie seus créditos de impulsionamento</p>
@@ -70,7 +70,7 @@
             <!-- Campo de data (clicável) -->
             <div class="field">
               <label>Data de Início</label>
-              <div class="date-picker" @click="focusDateInput">
+              <div class="date-picker clickable" @click="focusDateInput">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="date-picker-icon">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -89,7 +89,7 @@
             <!-- Campo de horário (clicável) -->
             <div class="field">
               <label>Horário</label>
-              <div class="time-input" @click="focusTimeInput">
+              <div class="time-input clickable" @click="focusTimeInput">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="time-icon">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
@@ -118,7 +118,7 @@
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            Agendar Impulsionamento
+            Agendar Impulsão
           </button>
         </div>
         
@@ -207,6 +207,17 @@ export default {
         this.totalCredits += this.selectedOption;
         this.showAlertMessage(`${this.selectedOption} créditos adicionados com sucesso!`);
       }, 500);
+    },
+    
+    // Métodos para focar nos inputs de data e hora
+    focusDateInput() {
+      this.$refs.dateInput.focus();
+      this.$refs.dateInput.showPicker && this.$refs.dateInput.showPicker();
+    },
+    
+    focusTimeInput() {
+      this.$refs.timeInput.focus();
+      this.$refs.timeInput.showPicker && this.$refs.timeInput.showPicker();
     },
     
     // Métodos de agendamento
