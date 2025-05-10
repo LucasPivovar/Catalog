@@ -23,7 +23,7 @@
       </div>
     </div>      
   </body> 
-  <a href="/access" class="access">Acessar</a>
+  <a href="/access" class="button">Acessar</a>
   <a href="/dashboard" class="dashboard">Dashboard</a>
 </template>  
 
