@@ -142,7 +142,7 @@ export default {
     text-decoration: none;
     transition: all 0.3s ease;
     font-weight: 500;
-    padding: 15px;
+    padding: 5px 15px 5px 15px;
     background: var(--primary);
     border-radius: 15px;
   }
