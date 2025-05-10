@@ -12,7 +12,7 @@
               <img src="../assets/icons/people.svg" alt="">
               {{ modelsCount }} modelos
             </p> 
-            <a href="entrar" class="button">Acessar</a>
+            <a href="/access" class="access">Entrar</a>
           </div>        
       
         </header>       
