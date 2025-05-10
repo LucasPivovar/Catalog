@@ -231,6 +231,7 @@
 </template>
 
 <script>
+import '@/assets/css/acess_view.css';
 export default {
   name: 'AuthComponent',
   data() {
