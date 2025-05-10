@@ -120,7 +120,8 @@ export default {
     gap: 10px;
     background-color: var(--btn-secondary);
     margin: auto 0 auto 0;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     display: flex;
     border-radius: 5px;
   }

@@ -76,12 +76,6 @@
   margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-  .credit-options {
-    flex-direction: column;
-  }
-}
-
 .credit-option {
   flex: 1;
   background-color: var(--bg-element);
@@ -336,6 +330,7 @@ span {
 
   .credit-options {
     margin-top: 1rem;
+    flex-direction: column;
   }
 
 
