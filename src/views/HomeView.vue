@@ -6,11 +6,15 @@
     <div class="main">   
       <div class="content_home">    
         <header>         
-          <h1><strong>Studio</strong> Catalog</h1>         
-          <p>
-            <img src="../assets/icons/people.svg" alt="">
-             {{ modelsCount }} modelos
-          </p>       
+          <h1><strong>Studio</strong> Catalog</h1> 
+          <div class="header-left">
+            <p>
+              <img src="../assets/icons/people.svg" alt="">
+              {{ modelsCount }} modelos
+            </p> 
+            <a href="entrar" class="button">Acessar</a>
+          </div>        
+      
         </header>       
         <catalog-cards          
           ref="catalogCardsRef"         
@@ -98,6 +102,13 @@ export default {
     padding: 0 35px;     
     width: 100%;   
   }    
+
+  .header-left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
   
   header h1{     
     font-weight: 400;     
@@ -126,4 +137,15 @@ export default {
   header p span img{     
     width: 25px;   
   } 
+
+  .button {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 15px;
+    background: var(--primary);
+    border-radius: 15px;
+  }
+
 </style>
