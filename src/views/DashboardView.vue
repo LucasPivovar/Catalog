@@ -115,14 +115,15 @@ export default {
   }
   
   .buttons {
-    display: flex;
-    border-radius: 5px;
     overflow: hidden;
     padding: 8px;
     gap: 10px;
     background-color: var(--btn-secondary);
-    justify-content: center;
     margin: auto 0 auto 0;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    border-radius: 5px;
   }
 
   .button {
