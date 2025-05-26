@@ -105,6 +105,9 @@
                 Instagram
               </a>
             </div>
+            <div class="profile">
+              <a :href="model.profile" target="_blank">Acessar Perfil</a>
+            </div>
           </div>
         </div>
         

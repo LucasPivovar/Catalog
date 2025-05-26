@@ -46,6 +46,12 @@
                     </div>
                 </div>
             </div>
+                <div class="form-group">
+                    <label for="Perfil">Link do Perfil</label>
+                     <div class="input-container">
+                       <input type="text" placeholder="Link do perfil" id="Perfil" class="input-field">
+                    </div>
+                </div>
             <button class="submit-button red">Salvar Alterações</button>
           </div>  
     

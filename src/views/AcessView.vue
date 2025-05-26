@@ -217,14 +217,35 @@
           <div class="accept-terms">
             <input type="checkbox" id="terms" v-model="registerForm.acceptTerms">
             <label for="terms">
-              Eu aceito os <a href="#" class="terms-link">Termos de Uso</a> e 
-              <a href="#" class="terms-link">Política de Privacidade</a>
+              Eu aceito os <a href="#" @click.prevent="openModal('terms')" class="terms-link">Termos de Uso</a> e 
+              <a href="#" @click.prevent="openModal('privacy')" class="terms-link">Política de Privacidade</a>
             </label>
           </div>
         </div>
         
         <!-- Submit Button -->
         <button class="submit-button" @click="register">Criar Conta</button>
+      </div>
+    </div>
+    
+    <!-- Modal -->
+    <div v-if="showModal" class="modal-overlay" @click="closeModal">
+      <div class="modal-content" @click.stop>
+        <div class="modal-header">
+          <h2>{{ modalTitle }}</h2>
+          <button class="modal-close" @click="closeModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div v-html="modalContent"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-button" @click="closeModal">Fechar</button>
+        </div>
       </div>
     </div>
   </div>
@@ -239,6 +260,8 @@ export default {
       activeTab: 'login',
       showPassword: false,
       showConfirmPassword: false,
+      showModal: false,
+      modalType: '',
       loginForm: {
         email: '',
         password: '',
@@ -261,6 +284,58 @@ export default {
     passwordMismatch() {
       if (!this.registerForm.confirmPassword) return false;
       return this.registerForm.password !== this.registerForm.confirmPassword;
+    },
+    modalTitle() {
+      return this.modalType === 'terms' ? 'Termos de Uso' : 'Política de Privacidade';
+    },
+    modalContent() {
+      if (this.modalType === 'terms') {
+        return `
+          <h3>1. Aceitação dos Termos</h3>
+          <p>Ao utilizar nossos serviços, você concorda com estes termos de uso.</p>
+          
+          <h3>2. Uso do Serviço</h3>
+          <p>Você concorda em usar nosso serviço apenas para fins legais e de acordo com estes termos.</p>
+          
+          <h3>3. Conta do Usuário</h3>
+          <p>Você é responsável por manter a confidencialidade de sua conta e senha.</p>
+          
+          <h3>4. Privacidade</h3>
+          <p>Respeitamos sua privacidade conforme descrito em nossa Política de Privacidade.</p>
+          
+          <h3>5. Limitação de Responsabilidade</h3>
+          <p>Nosso serviço é fornecido "como está" sem garantias de qualquer tipo.</p>
+          
+          <h3>6. Modificações</h3>
+          <p>Podemos modificar estes termos a qualquer momento. As alterações entrarão em vigor imediatamente.</p>
+          
+          <h3>7. Contato</h3>
+          <p>Para dúvidas sobre estes termos, entre em contato conosco através do e-mail: contato@crimsonauth.com</p>
+        `;
+      } else {
+        return `
+          <h3>1. Coleta de Informações</h3>
+          <p>Coletamos informações que você nos fornece diretamente, como nome, e-mail e CPF.</p>
+          
+          <h3>2. Uso das Informações</h3>
+          <p>Utilizamos suas informações para fornecer e melhorar nossos serviços.</p>
+          
+          <h3>3. Compartilhamento de Dados</h3>
+          <p>Não vendemos, comercializamos ou transferimos suas informações pessoais para terceiros.</p>
+          
+          <h3>4. Segurança</h3>
+          <p>Implementamos medidas de segurança para proteger suas informações pessoais.</p>
+          
+          <h3>5. Cookies</h3>
+          <p>Utilizamos cookies para melhorar sua experiência em nosso site.</p>
+          
+          <h3>6. Seus Direitos</h3>
+          <p>Você tem o direito de acessar, corrigir ou excluir suas informações pessoais.</p>
+          
+          <h3>7. Contato</h3>
+          <p>Para questões sobre privacidade, entre em contato: privacidade@crimsonauth.com</p>
+        `;
+      }
     }
   },
   methods: {
@@ -292,7 +367,6 @@ export default {
       }
     },
     openDatePicker() {
-      // Abre o seletor de data nativo
       if (this.$refs.birthdateInput) {
         this.$refs.birthdateInput.click();
       }
@@ -302,10 +376,19 @@ export default {
         const [year, month, day] = this.registerForm.birthdate.split('-');
         this.displayBirthdate = `${day}/${month}/${year}`;
       }
+    },
+    // Métodos do Modal
+    openModal(type) {
+      this.modalType = type;
+      this.showModal = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeModal() {
+      this.showModal = false;
+      document.body.style.overflow = 'auto';
     }
   },
   mounted() {
-    // Define a data máxima como hoje (para impedir datas futuras)
     if (this.$refs.birthdateInput) {
       this.$refs.birthdateInput.max = new Date().toISOString().split('T')[0];
     }
