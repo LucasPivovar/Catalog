@@ -1,0 +1,349 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-main);
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+main {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.back-button-container {
+    margin-bottom: 30px;
+}
+
+container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+sidebox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 50px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+box {
+    display: block;
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 400px;
+}
+
+h3{
+    color: white;
+    font-size: 1.5rem;
+}
+
+.gallery-box {
+    position: sticky;
+    top: 20px;
+    width: 30rem;
+    border: none;
+}
+
+.main-image {
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+}
+
+.no-image {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.gallery-footer {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.img-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    background-color: var(--bg-element-alt);
+}
+
+.img-preview:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.img-preview.active {
+    border-color: var(--primary);
+    opacity: 1;
+}
+
+.details-box {
+    padding: 30px;
+}
+
+.model-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-main);
+}
+
+.model-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.contact-link.whatsapp {
+    background-color: var(--whatsapp);
+    color: white;
+}
+
+.contact-link.whatsapp:hover {
+    background-color: var(--whatsapp-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 199, 108, 0.3);
+}
+
+.contact-link.telegram {
+    background-color: var(--telegram);
+    color: white;
+}
+
+.contact-link.telegram:hover {
+    background-color: var(--telegram-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(47, 93, 185, 0.3);
+}
+
+.contact-link.instagram {
+    background: var(--instagram);
+    color: white;
+}
+
+.contact-link.instagram:hover {
+    background: var(--instagram-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(240, 163, 255, 0.3);
+}
+
+.contact-link:not(.whatsapp):not(.telegram):not(.instagram) {
+    background-color: var(--bg-element);
+    color: var(--text-primary);
+    border: 1px solid var(--border-main);
+}
+
+.contact-link:not(.whatsapp):not(.telegram):not(.instagram):hover {
+    background-color: var(--bg-element-alt);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.profile {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-main);
+}
+
+.profile-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.profile-link:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 47, 75, 0.3);
+}
+
+.review-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-main);
+}
+
+.overall-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 20px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.star.filled {
+    color: var(--primary);
+}
+
+.rating-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.reviews-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.reviews-container h3{
+    margin-bottom: 1rem;
+}
+
+.reviews-list{
+    max-height: 400px;
+    max-width: 1000px;
+    overflow-y: scroll;
+    margin-right: -10px;
+    padding-right: 10px;
+}
+
+.reviews-container h2 {
+    color: var(--color-primary);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    margin-top: 0;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-item {
+    background-color: var(--bg-element);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.review-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(211, 47, 75, 0.15);
+}
+
+.review-stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.review-stars .star {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.review-stars .star.filled {
+    color: var(--primary);
+}
+
+.review-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Scrollbar personalizada */
+.reviews-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.reviews-list::-webkit-scrollbar-track {
+    background: var(--bg-element);
+    border-radius: 5px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb {
+    background: var(--border-main);
+    border-radius: 5px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
