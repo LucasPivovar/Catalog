@@ -15,7 +15,6 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AcessView.vue')
   },
-
   {
     path: '/dashboard',
     name: 'dashboard',
@@ -24,6 +23,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/DashboardView.vue')
   },
+  {
+    path: '/model/:id',
+    name: 'ModelDetail',
+    // route level code-splitting
+    // this generates a separate chunk (model.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "model" */ '../components/ModelDetail.vue'),
+    props: true
+  }
 ]
 
 const router = createRouter({
@@ -31,4 +39,4 @@ const router = createRouter({
   routes
 })
 
-export default router
+export default router 

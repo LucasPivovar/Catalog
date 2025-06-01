@@ -20,7 +20,26 @@
         {
             "whatsapp": "https://web.whatsapp.com/",
             "telegram": "https://web.telegram.org/",
-            "instagram": "https://www.instagram.com/"
+            "instagram": "https://www.instagram.com/",
+            "Link Externo": "https://www.facebook.com/"
         }
-    ]
+    ],
+    "profile": "",
+    "comments": [	
+        {   
+            "id": 1,
+            "stars": 5,
+            "comment": "Esse modelo é incrível! Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado."
+        },
+        {   
+            "id": 1,
+            "stars": 2,
+            "comment": "Esse modelo é incrível! Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado."
+        },
+        {   
+            "id": 1,
+            "stars": 5,
+            "comment": "Esse modelo é incrível! Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado."
+        }
+    ]   
 }

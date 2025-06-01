@@ -27,7 +27,7 @@
 </template>  
 
 <script>
-import catalogCards from '@/components/catalogCards.vue';
+import catalogCards from '@/components/ModelCards.vue';
 import '@/assets/css/home_view.css';
 import '@/assets/css/global.css';
 
