@@ -1,5 +1,14 @@
 .main {
     font-family: 'Inter', sans-serif;
+    /* Força o main a usar toda a viewport */
+    width: 100vw;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
     
 .profile {
@@ -7,10 +16,12 @@
     border: 2px solid var(--border-main);
     padding: 30px;
     border-radius: 15px;
-    width: 100%;
+    /* CORREÇÃO: usa viewport width com limite máximo */
+    width: calc(100vw - 40px); /* Subtrai o padding do main */
     max-width: 1400px;
+    min-width: 300px; /* Evita ficar muito pequeno */
     margin-bottom: 1rem;
-
+    box-sizing: border-box;
 }
 
 .profile-header {
@@ -19,7 +30,7 @@
     align-items: center;
     margin-bottom: 30px;
     color: var(--text-primary);
-    max-width: 1400px;
+    width: 100%; /* Remove max-width fixo */
 }
 
 .profile-content {
@@ -48,6 +59,8 @@
     border: 2px solid var(--border-main);
     border-radius: 15px;
     padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -70,12 +83,34 @@
     color: var(--text-primary);
     background-color: var(--bg-element);
     width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.contact-link {
+    height: 38px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-link .input-field {
+    text-align: left;
 }
 
 label {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-primary);
+    text-align: left;
 }
 
 .input-field:focus {
@@ -86,7 +121,7 @@ label {
     color: var(--text-secondary);
     font-family: 'inter';
     font-weight: 400;
-    margin-left: 1rem;
+    text-align: left; 
 }
 
 .submit-button {
@@ -98,6 +133,7 @@ label {
     cursor: pointer;
     font-weight: 500;
     width: 10rem;
+    align-self: center; 
 }
 
 .submit-button:hover {
@@ -109,18 +145,7 @@ textarea {
     height: 100px;
 }
 
-.contact-link {
-    width: 100%;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-
 /* Photo upload styles */
-
 .photo-input {
     display: none;
 }
@@ -189,46 +214,86 @@ textarea {
     font-size: 12px;
     margin-top: 4px;
     margin-bottom: 0;
-  }
-  
+    text-align: center;
+}
+
+@media (min-width: 769px) {
+    .profile {
+        width: min(1400px, calc(100vw - 40px));
+    }
+}
+
+@media (max-width: 1420px) {
+    .main {
+        padding: 0 10px;
+    }
+    
+    .profile {
+        width: calc(100vw - 20px);
+    }
+}
 
 @media screen and (max-width: 768px) {
+    .main {
+        padding: 0 10px;
+    }
+
     .profile {
-        background: var(--bg-element-alt);
-        border: 2px solid var(--border-main);
-        padding: 30px;
-        border-radius: 15px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+        width: calc(100vw - 20px);
         padding: 15px;
-        
+    }
+
+    .photo-preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 0 auto 10px auto;
+        width: 70%;
+    }
+
+    .photo-preview {
+        position: relative;
+        height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: var(--bg-element);
+    }
+
+    .preview-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .contact-links {
         flex-direction: column;
-        gap: 0;
+        gap: 15px;
         align-items: center;
+        width: 100%;
     }
 
-    .photo-preview-container {
-        margin-left: auto;
-        margin-right: auto;
+    .contact-link {
+        width: 100%;
+        max-width: none; /* Remove limitação de largura no mobile */
     }
 
     .profile-form {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         padding: 15px;
     }
 
-    .form-group{
+    .form-group {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
     }
 
-    input{
+
+
+    .form-group label {
+        align-self: flex-start; /* Labels alinhados à esquerda no mobile */
         width: 100%;
+        text-align: left; /* Labels à esquerda no mobile */
     }
 }

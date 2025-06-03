@@ -1,12 +1,18 @@
 /* Estilos base */
 .main {
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   background-color: var(--bg-main);
   min-height: 100vh;
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
+  /* Força o main a ocupar toda a largura da viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 /* Containers e seções */
@@ -15,20 +21,30 @@
   border-radius: 8px;
   padding: 24px;
   margin-bottom: 24px;
+  /* Força o container a crescer independente do pai */
   max-width: 1400px;
   width: 100%;
+  min-width: 300px; /* Largura mínima para não quebrar em telas muito pequenas */
+  /* Use vw para forçar crescimento se necessário */
+  width: calc(100vw - 40px); /* 100% da viewport menos o padding do main */
+  max-width: 1400px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border: 2px solid var(--border-main);
   gap: 20px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  /* Se ainda não funcionar, force com position */
+  position: relative;
 }
 
 .boost-content {
   border: 2px solid var(--border-main);
   padding: 30px;
   border-radius: 8px;
-
+  /* Garante que o conteúdo interno também seja responsivo */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section-title {
@@ -74,10 +90,14 @@
   display: flex;
   gap: 16px;
   margin-bottom: 20px;
+  /* Garante que as opções sejam flexíveis */
+  flex-wrap: wrap;
 }
 
 .credit-option {
   flex: 1;
+  /* Adiciona min-width para evitar que fiquem muito pequenas */
+  min-width: 200px;
   background-color: var(--bg-element);
   border-radius: 6px;
   padding: 20px;
@@ -219,7 +239,6 @@
   position: relative;
   cursor: pointer;
   font-family: 'inter';
-  width: 100%;
   z-index: 1;
 }
 
@@ -262,7 +281,6 @@ input[type="time"] {
     background: var(--bg-card);
     width: 100%;
     padding: 10px;
-
 }
 
 span {
@@ -310,6 +328,22 @@ span {
   margin-left: 10px;
 }
 
+@media (max-width: 1420px) {
+  .main {
+    padding: 0 10px;
+  }
+  
+  .boost-container {
+    width: calc(100vw - 20px);
+  }
+}
+
+@media (min-width: 769px) {
+  .boost-container {
+    width: min(1400px, calc(100vw - 40px));
+  }
+}
+
 @media (max-width: 768px) {
   .section-header h2 {
     font-size: 1.1rem;
@@ -318,6 +352,7 @@ span {
 
   .boost-container {
     padding: 15px;
+    margin: 0 auto 24px auto;
   }
 
   .boost-content {
@@ -333,5 +368,7 @@ span {
     flex-direction: column;
   }
 
-
+  .credit-option {
+    min-width: unset;
+  }
 }

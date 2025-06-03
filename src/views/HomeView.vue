@@ -5,21 +5,22 @@
   <body>     
     <div class="main">   
       <div class="content_home">    
-        <header>         
-          <h1><strong>Studio</strong> Catalog</h1> 
-          <div class="header-left">
-            <p>
-              <img src="../assets/icons/people.svg" alt="">
-              {{ modelsCount }} modelos
-            </p> 
-            <a href="/access" class="button">Entrar</a>
-          </div>        
-      
-        </header>       
+        <app-header :models-count="modelsCount" />
+        
+        <!-- Mostrar lista de modelos ou detalhes baseado no estado -->
         <catalog-cards          
+          v-if="!selectedModelId"
           ref="catalogCardsRef"         
-          @models-loaded="updateModelsCount"       
-        ></catalog-cards>     
+          @models-loaded="updateModelsCount"
+          @model-selected="showModelDetails"
+        />
+        
+        <!-- Componente de detalhes do modelo -->
+        <model-detail
+          v-if="selectedModelId"
+          :model-id="selectedModelId"
+          @back-to-list="backToList"
+        />
       </div>
     </div>      
   </body> 
@@ -27,124 +28,100 @@
 </template>  
 
 <script>
-import catalogCards from '@/components/ModelCards.vue';
+import AppHeader from '@/components/AppHeader.vue';
+import catalogCards from '@/components/cards/ModelCards.vue';
+import ModelDetail from '@/components/cards/ModelDetail.vue';
 import '@/assets/css/home_view.css';
 import '@/assets/css/global.css';
 
 export default {   
   name: 'HomeView',   
   components: {     
-    catalogCards   
+    catalogCards,
+    ModelDetail,
+    AppHeader,
   },      
   
   data() {     
     return {       
-      modelsCount: 0     
+      modelsCount: 0,
+      selectedModelId: null
     }   
   },      
   
   mounted() {     
-    // Give child component time to initialize     
     this.$nextTick(() => {       
       this.checkModelsCount();     
     });   
   },      
   
   methods: {     
-    // Update models count when event is emitted from child     
     updateModelsCount(count) {       
       this.modelsCount = count;       
       console.log('Quantidade atualizada:', count);     
     },          
     
-    // Check models count if event wasn't triggered     
     checkModelsCount() {       
       if (this.$refs.catalogCardsRef) {         
         const count = this.$refs.catalogCardsRef.getModelsCount();         
         if (count > 0) {           
           this.modelsCount = count;         
         } else {           
-          // Keep checking until we get models           
           setTimeout(() => {             
             this.checkModelsCount();           
           }, 500);         
         }       
       } else {         
-        // Reference not available yet, try again         
         setTimeout(() => {           
           this.checkModelsCount();         
         }, 200);       
       }     
-    }   
+    },
+
+    showModelDetails(modelId) {
+      this.selectedModelId = modelId;
+      // Scroll para o topo quando mostrar detalhes
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    backToList() {
+      this.selectedModelId = null;
+      // Scroll para o topo quando voltar para a lista
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   } 
 } 
 </script>  
 
 <style scoped>
-  .main{
-    font-family: "inter";   
-    background: var(--bg-main);
-  }    
-  
-  .content{     
-    width: 100%;     
-    min-height: 100vh;     
-    max-width: 1400px;   
-  }    
-  
-  header{     
-    display: flex;     
-    color: var(--text-primary);
-    align-items: center;     
-    justify-content: space-between;     
-    margin-top: 1rem;     
-    padding: 0 35px;     
-    width: 100%;   
-  }    
+.main {
+  font-family: "Inter", sans-serif;   
+  background: var(--bg-main);
+  min-height: 100vh;
+}    
 
-  .header-left{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  header h1{     
-    font-weight: 400;     
-    font-size: 1.6rem;   
-  }    
-  
-  header strong{     
-    font-weight: 400;     
-    color: var(--text-accent);
-  }    
-  
-  header p {     
-    font-size: 1.1rem;     
-    font-weight: 300;     
-    display: flex;     
-    justify-content: center;     
-    flex-direction: row;     
-    align-items: center;     
-    gap: 5px;   
-  }    
-  
-  header p span{     
-    background: transparent;
-  }    
-  
-  header p span img{     
-    width: 25px;   
-  } 
+.content_home {     
+  width: 100%;     
+  min-height: 100vh;     
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-  .button {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    padding: 5px 15px 5px 15px;
-    background: var(--primary);
-    border-radius: 15px;
-  }
+.dashboard {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: var(--text-primary);
+  text-decoration: none;
+  background: var(--primary);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
 
+.dashboard:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
 </style>

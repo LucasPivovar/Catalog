@@ -111,15 +111,13 @@ label {
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    cursor: pointer;
 }
 
 .icon-left img{
     width: 20px;
 }
   
-.icon-right {
-    cursor: pointer;
-}
 
 /* ========== ICON STYLES ========== */
 .eye-icon {
@@ -215,6 +213,105 @@ label {
 
 .date-container:hover::after {
     background-color: rgba(230, 76, 111, 0.05); /* Efeito sutil na cor principal */
+}
+
+/* estilo para adicionar docs */
+.photo-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.photo-input {
+  display: none;
+}
+
+.photo-preview-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photo-preview {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--bg-element);
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-preview:hover .photo-overlay {
+  opacity: 1;
+}
+
+.remove-icon {
+  color: white;
+  cursor: pointer;
+}
+
+.add-photo {
+  width: 150px;
+  height: 150px;
+  border: 2px dashed var(--border-main);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.add-photo:hover {
+  border-color: var(--primary);
+}
+
+.add-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.add-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
 }
 
 /* ========== CHECKBOX & LINKS ROW ========== */
@@ -403,10 +500,14 @@ label {
   background-color: #b91c1c;
 }
 
+
+
 @media screen and (max-width: 768px) {
+
     .auth-container {
         width: 90%;
         max-width: 400px;
+        margin: auto;
     }
 
     .modal-overlay {

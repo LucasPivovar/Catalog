@@ -129,7 +129,7 @@
           </div>
         </div>
         
-        <!-- Data de Nascimento Field (MELHORADO) -->
+        <!-- Data de Nascimento Field -->
         <div class="form-group">
           <label for="birthdate">Data de Nascimento</label>
           <div class="input-container date-container" @click="openDatePicker">
@@ -157,6 +157,37 @@
               class="hidden-date-input"
               @change="formatDate">
           </div>
+        </div>
+
+        <!-- RG Photos Upload Field -->
+        <div class="form-group">
+          <label>Fotos do RG</label>
+          <div class="photo-preview-container">
+            <div v-for="side in rgSides" :key="side.key" class="photo-upload-section">
+              <label class="photo-label">{{ side.label }}</label>
+              <div class="photo-preview" v-if="registerForm[side.photoKey]">
+                <img :src="registerForm[side.photoKey]" :alt="side.label" class="preview-image">
+                <div class="photo-overlay" @click="removePhoto(side.key)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="remove-icon">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                  </svg>
+                </div>
+              </div>
+              <div v-else class="add-photo" @click="triggerFileInput(side.key)">
+                <div class="add-icon">📷</div>
+                <div class="add-text">{{ side.label }}</div>
+              </div>
+              <input 
+                type="file" 
+                :ref="side.inputRef"
+                class="photo-input" 
+                accept="image/*" 
+                @change="handlePhotoUpload($event, side.key)">
+            </div>
+          </div>
+          <p v-if="photoUploadError" class="error-message">{{ photoUploadError }}</p>
         </div>
         
         <!-- Password Field -->
@@ -262,6 +293,7 @@ export default {
       showConfirmPassword: false,
       showModal: false,
       modalType: '',
+      photoUploadError: '',
       loginForm: {
         email: '',
         password: '',
@@ -274,10 +306,16 @@ export default {
         birthdate: '',
         password: '',
         confirmPassword: '',
-        acceptTerms: false
+        acceptTerms: false,
+        rgFrontPhoto: null,
+        rgBackPhoto: null
       },
       formattedCPF: '',
-      displayBirthdate: ''
+      displayBirthdate: '',
+      rgSides: [
+        { key: 'front', label: 'Frente do RG', photoKey: 'rgFrontPhoto', inputRef: 'rgFrontInput' },
+        { key: 'back', label: 'Verso do RG', photoKey: 'rgBackPhoto', inputRef: 'rgBackInput' }
+      ]
     }
   },
   computed: {
@@ -338,6 +376,8 @@ export default {
       }
     }
   },
+// Updated methods section for your Vue component
+
   methods: {
     togglePassword() {
       this.showPassword = !this.showPassword;
@@ -349,6 +389,10 @@ export default {
       console.log('Login attempt', this.loginForm);
     },
     register() {
+      if (!this.registerForm.rgFrontPhoto || !this.registerForm.rgBackPhoto) {
+        this.photoUploadError = 'Por favor, envie as fotos da frente e verso do RG';
+        return;
+      }
       console.log('Register attempt', this.registerForm);
     },
     handleCPFInput(event) {
@@ -363,7 +407,7 @@ export default {
         this.formattedCPF = rawValue.substring(0, 3) + '.' + rawValue.substring(3, 6) + '.' + rawValue.substring(6);
       } else {
         this.formattedCPF = rawValue.substring(0, 3) + '.' + rawValue.substring(3, 6) + '.' + 
-                           rawValue.substring(6, 9) + '-' + rawValue.substring(9, 11);
+                          rawValue.substring(6, 9) + '-' + rawValue.substring(9, 11);
       }
     },
     openDatePicker() {
@@ -377,7 +421,43 @@ export default {
         this.displayBirthdate = `${day}/${month}/${year}`;
       }
     },
-    // Métodos do Modal
+    // Fixed photo upload methods
+    triggerFileInput(side) {
+      // Use the actual ref names from your rgSides array
+      const inputRef = side === 'front' ? 'rgFrontInput' : 'rgBackInput';
+      const input = this.$refs[inputRef];
+      if (input && input[0]) {
+        input[0].click(); // Access the first element since refs can be arrays
+      }
+    },
+    handlePhotoUpload(event, side) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+        this.photoUploadError = file.size > 5 * 1024 * 1024 ? 
+          'A imagem deve ter no máximo 5MB' : 'Por favor, selecione apenas arquivos de imagem';
+        return;
+      }
+      
+      this.photoUploadError = '';
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.registerForm[side === 'front' ? 'rgFrontPhoto' : 'rgBackPhoto'] = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removePhoto(side) {
+      const photoKey = side === 'front' ? 'rgFrontPhoto' : 'rgBackPhoto';
+      const inputRef = side === 'front' ? 'rgFrontInput' : 'rgBackInput';
+      this.registerForm[photoKey] = null;
+      const input = this.$refs[inputRef];
+      if (input && input[0]) {
+        input[0].value = '';
+      }
+    },
+    // Modal methods
     openModal(type) {
       this.modalType = type;
       this.showModal = true;
