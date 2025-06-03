@@ -6,7 +6,6 @@
     align-items: center;
     background: var(--bg-main);
     padding: 40px 0;
-    /* Removed min-height and justify-content to prevent stretching */
 }
   
 /* ========== CONTENT CONTAINER ========== */
@@ -27,7 +26,7 @@
 /* ========== TYPOGRAPHY ========== */
 .auth-container h1 {
     font-size: 2rem;
-    color: #E64C6F; /* Crimson color from your screenshot */
+    color: #E64C6F;
     font-weight: 600;
     margin-bottom: 10px;
     text-align: center;
@@ -59,7 +58,7 @@ p {
   
 .button {
     color: var(--text-secondary);
-    padding: 8px 0; /* Slightly increased padding for better height */
+    padding: 8px 0;
     text-align: center;
     text-decoration: none;
     width: 50%;
@@ -72,7 +71,7 @@ p {
 }
   
 .button-active {
-    background-color: #E64C6F; /* Matching the active tab color in screenshot */
+    background-color: #E64C6F;
     color: var(--text-primary);
 }
   
@@ -159,7 +158,6 @@ label {
 
 /* ========== DATA PICKER OCULTO E CONTAINER ========== */
 
-/* Estilos específicos para o contêiner de data */
 .date-container {
     cursor: pointer;
     position: relative;
@@ -235,7 +233,7 @@ label {
 
 .photo-preview-container {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   margin-top: 15px;
   margin-bottom: 15px;
   justify-content: center;
@@ -244,8 +242,8 @@ label {
 
 .photo-preview {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
