@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* RESET & BASE STYLES */
 * {
   margin: 0;
@@ -407,4 +408,439 @@ main {
     padding: 0.75rem 1rem;
     font-size: 1rem;
   }
+=======
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-main);
+    font-family: "Inter", sans-serif;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.back-button-container {
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.sidebox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.model-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    margin-bottom: 30px;
+    gap: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--bg-element);
+}
+
+.gallery-box {
+    width: 500px;
+    max-width: 500px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+}
+
+.no-image {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--text-secondary);
+    background-color: var(--bg-element);
+    border-radius: 15px;
+}
+
+.gallery-footer {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.img-preview {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    background-color: var(--bg-element-alt);
+}
+
+.img-preview:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.img-preview.active {
+    border-color: var(--primary);
+    opacity: 1;
+}
+
+.details-box {
+    flex: 1;
+    padding: 30px;
+    min-height: fit-content;
+}
+
+.model-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-main);
+}
+
+.model-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.contact-link.whatsapp {
+    background-color: var(--whatsapp);
+    color: white;
+}
+
+.contact-link.whatsapp:hover {
+    background-color: var(--whatsapp-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 199, 108, 0.3);
+}
+
+.contact-link.telegram {
+    background-color: var(--telegram);
+    color: white;
+}
+
+.contact-link.telegram:hover {
+    background-color: var(--telegram-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(47, 93, 185, 0.3);
+}
+
+.contact-link.instagram {
+    background: var(--instagram);
+    color: white;
+}
+
+.contact-link.instagram:hover {
+    background: var(--instagram-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(240, 163, 255, 0.3);
+}
+
+.contact-link:not(.whatsapp):not(.telegram):not(.instagram) {
+    background-color: var(--bg-element-alt);
+    color: var(--text-primary);
+    border: 1px solid var(--border-main);
+}
+
+.contact-link:not(.whatsapp):not(.telegram):not(.instagram):hover {
+    background-color: var(--bg-element);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.review-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-main);
+}
+
+.review-section h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.overall-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 20px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.star.filled {
+    color: var(--primary);
+}
+
+.rating-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.reviews-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.reviews-container h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.reviews-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-right: -10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-item {
+    background-color: var(--bg-element);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.review-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(211, 47, 75, 0.15);
+}
+
+.review-stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.review-stars .star {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.review-stars .star.filled {
+    color: var(--primary);
+}
+
+.review-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Estados de carregamento e erro */
+.loading,
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    font-size: 18px;
+    color: var(--text-secondary);
+    width: 100%;
+}
+
+.error {
+    color: var(--error, #ff4757);
+}
+
+/* Scrollbar personalizada */
+.reviews-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reviews-list::-webkit-scrollbar-track {
+    background: var(--bg-element);
+    border-radius: 5px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb {
+    background: var(--border-main);
+    border-radius: 5px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+
+@media (max-width: 968px) {
+    .content {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    
+    .gallery-box {
+        width: 100%;
+        max-width: 600px;
+        position: static;
+    }
+    
+    .details-box {
+        width: 100%;
+    }
+    
+    .main-image,
+    .no-image {
+        height: auto;
+        object-fit: cove;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    .model-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .details-box {
+        padding: 20px;
+    }
+    
+    .reviews-container {
+        padding: 20px;
+    }
+    
+    .img-preview {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-footer {
+        justify-content: left;
+    }
+    
+    .overall-rating {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .contact-link {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+>>>>>>> 02e6bf8ab80cdc5de837834f9695e9c3379773c6
 }
