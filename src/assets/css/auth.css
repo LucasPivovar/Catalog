@@ -1,15 +1,12 @@
-
-/* ========== MAIN CONTAINER ========== */
-.main {
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: var(--bg-main);
     padding: 40px 0;
-    /* Removed min-height and justify-content to prevent stretching */
+    max-width: 100vw;
 }
   
-/* ========== CONTENT CONTAINER ========== */
 .auth-container {
     width: 100%;
     max-width: 400px;
@@ -24,10 +21,9 @@
     margin: 3rem;
 }
   
-/* ========== TYPOGRAPHY ========== */
 .auth-container h1 {
     font-size: 2rem;
-    color: #E64C6F; /* Crimson color from your screenshot */
+    color: #E64C6F;
     font-weight: 600;
     margin-bottom: 10px;
     text-align: center;
@@ -40,12 +36,10 @@ p {
     text-align: center;
 }
   
-/* ========== FORM CONTAINERS ========== */
 .login, .register {
     width: 100%;
 }
   
-/* ========== TAB BUTTONS ========== */
 .buttons {
     display: flex;
     width: 100%;
@@ -59,7 +53,7 @@ p {
   
 .button {
     color: var(--text-secondary);
-    padding: 8px 0; /* Slightly increased padding for better height */
+    padding: 8px 0;
     text-align: center;
     text-decoration: none;
     width: 50%;
@@ -72,11 +66,10 @@ p {
 }
   
 .button-active {
-    background-color: #E64C6F; /* Matching the active tab color in screenshot */
+    background-color: #E64C6F;
     color: var(--text-primary);
 }
   
-/* ========== FORM GROUPS ========== */
 .form-group {
     margin-bottom: 15px;
     width: 100%;
@@ -89,7 +82,6 @@ label {
     font-weight: 500;
 }
   
-/* ========== INPUT CONTAINERS ========== */
 .input-container {
     width: 100%;
     display: flex;
@@ -105,23 +97,22 @@ label {
     border: 1px solid var(--primary);
 }
 
-/* Icon containers */
 .icon-left, .icon-right {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    cursor: pointer;
+}
+
+.icon-right {
+  position: relative;
 }
 
 .icon-left img{
     width: 20px;
 }
   
-.icon-right {
-    cursor: pointer;
-}
-
-/* ========== ICON STYLES ========== */
 .eye-icon {
     color: var(--text-secondary);
     transition: color 0.2s;
@@ -131,7 +122,6 @@ label {
     color: var(--text-primary);
 }
 
-/* Estilo para o ícone de calendário */
 .calendar-icon {
     color: var(--text-secondary);
     transition: color 0.2s;
@@ -140,8 +130,7 @@ label {
 .calendar-icon:hover {
     color: var(--text-primary);
 }
-  
-/* ========== INPUTS ========== */
+
 .input-field {
     flex: 1;
     padding: 12px 0;
@@ -159,9 +148,6 @@ label {
     color: var(--text-secondary);
 }
 
-/* ========== DATA PICKER OCULTO E CONTAINER ========== */
-
-/* Estilos específicos para o contêiner de data */
 .date-container {
     cursor: pointer;
     position: relative;
@@ -176,7 +162,6 @@ label {
     background-color: var(--bg-active, rgba(255, 255, 255, 0.1));
 }
 
-/* Estilos para o campo de exibição da data */
 .date-display {
     cursor: pointer;
 }
@@ -200,7 +185,6 @@ label {
     cursor: pointer;
 }
 
-/* Feedback visual ao passar o mouse */
 .date-container::after {
     content: '';
     position: absolute;
@@ -217,7 +201,104 @@ label {
     background-color: rgba(230, 76, 111, 0.05); /* Efeito sutil na cor principal */
 }
 
-/* ========== CHECKBOX & LINKS ROW ========== */
+.photo-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.photo-input {
+  display: none;
+}
+
+.photo-preview-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photo-preview {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--bg-element);
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-preview:hover .photo-overlay {
+  opacity: 1;
+}
+
+.remove-icon {
+  color: white;
+  cursor: pointer;
+}
+
+.add-photo {
+  width: 150px;
+  height: 150px;
+  border: 2px dashed var(--border-main);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.add-photo:hover {
+  border-color: var(--primary);
+}
+
+.add-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.add-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
 .remember-forgot {
     display: flex;
     justify-content: space-between;
@@ -247,8 +328,14 @@ label {
   
 .forgot-password {
     font-size: 0.85rem;
-    color: #E64C6F; /* Matching the link color in screenshot */
+    color: #E64C6F;
     text-decoration: none;
+}
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s;
 }
   
 /* Terms section */
@@ -276,13 +363,12 @@ label {
 }
   
 .terms-link {
-    color: #E64C6F; /* Matching the link color in screenshot */
+    color: #E64C6F;
     text-decoration: none;
 }
-  
-/* ========== BUTTONS ========== */
+
 .submit-button {
-    background: #E64C6F; /* Matching the button color in screenshot */
+    background: #E64C6F;
     color: var(--text-primary);
     border: none;
     padding: 12px;
@@ -293,7 +379,6 @@ label {
     font-size: 1rem;
 }
 
-/* Mensagens de erro */
 .error-message {
     color: #FF6B6B;
     font-size: 0.8rem;
@@ -301,7 +386,6 @@ label {
     text-align: left;
 }
 
-/* Estilos do Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -404,9 +488,11 @@ label {
 }
 
 @media screen and (max-width: 768px) {
+
     .auth-container {
         width: 90%;
         max-width: 400px;
+        margin: auto;
     }
 
     .modal-overlay {

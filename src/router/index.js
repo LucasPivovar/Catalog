@@ -13,7 +13,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AcessView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/AuthView.vue')
   },
   {
     path: '/dashboard',
@@ -29,7 +29,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (model.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "model" */ '../components/ModelDetail.vue'),
+    component: () => import(/* webpackChunkName: "model" */ '../components/cards/ModelDetail.vue'),
     props: true
   }
 ]

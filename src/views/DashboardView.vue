@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import ProfileView from '@/components/ProfileContent.vue';
-import DashboardContent from '@/components/DashboardContent.vue';
-import BoostContent from '@/components/BoostContent.vue';
+import ProfileView from '@/components/dashboard/ProfileContent.vue';
+import DashboardContent from '@/components/dashboard/DashboardContent.vue';
+import BoostContent from '@/components/dashboard/BoostContent.vue';
 
 export default {
   name: 'DashboardView',

@@ -1,38 +1,47 @@
-.main {
+main {
     font-family: 'Inter', sans-serif;
+    width: 100vw;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
     
 .profile {
     background: var(--bg-element-alt);
     border: 2px solid var(--border-main);
-    padding: 30px;
+    padding: 2rem;
     border-radius: 15px;
-    width: 100%;
-    max-width: 1400px;
+    width: calc(100vw - 2.5rem);
+    max-width: 87.5rem;
+    min-width: 18.75rem;
     margin-bottom: 1rem;
-
+    box-sizing: border-box;
 }
 
 .profile-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     color: var(--text-primary);
-    max-width: 1400px;
+    width: 100%;
 }
 
 .profile-content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .profile-content h3 {
     color: var(--text-primary);
     font-size: 1.5rem;
     font-weight: 600;
-    line-height: 30px;
+    line-height: 2rem;
 }
 
 .profile-content p {
@@ -47,7 +56,9 @@
     flex-direction: column;
     border: 2px solid var(--border-main);
     border-radius: 15px;
-    padding: 30px;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -59,7 +70,7 @@
     display: flex;
     align-items: center;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .input-field {
@@ -70,12 +81,34 @@
     color: var(--text-primary);
     background-color: var(--bg-element);
     width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.contact-link {
+    height: 38px;
+    width: 100%;
+    max-width: 25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-link .input-field {
+    text-align: left;
 }
 
 label {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-primary);
+    text-align: left;
 }
 
 .input-field:focus {
@@ -86,7 +119,7 @@ label {
     color: var(--text-secondary);
     font-family: 'inter';
     font-weight: 400;
-    margin-left: 1rem;
+    text-align: left; 
 }
 
 .submit-button {
@@ -98,6 +131,7 @@ label {
     cursor: pointer;
     font-weight: 500;
     width: 10rem;
+    align-self: center; 
 }
 
 .submit-button:hover {
@@ -106,20 +140,8 @@ label {
 
 textarea {
     resize: none;
-    height: 100px;
+    height: 6.25rem;
 }
-
-.contact-link {
-    width: 100%;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-
-/* Photo upload styles */
 
 .photo-input {
     display: none;
@@ -128,15 +150,15 @@ textarea {
 .photo-preview-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 2rem;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
 .photo-preview {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
@@ -150,8 +172,8 @@ textarea {
 }
 
 .add-photo {
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     border: 2px dashed var(--border-main);
     border-radius: 10px;
     display: flex;
@@ -165,7 +187,7 @@ textarea {
 }
 
 .add-icon {
-    font-size: 24px;
+    font-size: 1.5rem;
     margin-bottom: 5px;
     color: var(--text-secondary);
 }
@@ -189,46 +211,84 @@ textarea {
     font-size: 12px;
     margin-top: 4px;
     margin-bottom: 0;
-  }
-  
+    text-align: center;
+}
+
+@media (min-width: 769px) {
+    .profile {
+        width: min(87.5rem, calc(100vw - 2.5rem));
+    }
+}
+
+@media (max-width: 1420px) {
+    .main {
+        padding: 0 10px;
+    }
+    
+    .profile {
+        width: calc(100vw - 1.25rem);
+    }
+}
 
 @media screen and (max-width: 768px) {
+    .main {
+        padding: 0 10px;
+    }
+
     .profile {
-        background: var(--bg-element-alt);
-        border: 2px solid var(--border-main);
-        padding: 30px;
-        border-radius: 15px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+        width: calc(100vw - 1.25rem);
         padding: 15px;
-        
+    }
+
+    .photo-preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin: 0 auto 10px auto;
+        width: 70%;
+    }
+
+    .photo-preview {
+        position: relative;
+        height: 12.5rem;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: var(--bg-element);
+    }
+
+    .preview-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .contact-links {
         flex-direction: column;
-        gap: 0;
+        gap: 15px;
         align-items: center;
+        width: 100%;
     }
 
-    .photo-preview-container {
-        margin-left: auto;
-        margin-right: auto;
+    .contact-link {
+        width: 100%;
+        max-width: none;
     }
 
     .profile-form {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         padding: 15px;
     }
 
-    .form-group{
+    .form-group {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
     }
 
-    input{
+    .form-group label {
+        align-self: flex-start;
         width: 100%;
+        text-align: left;
     }
 }
