@@ -116,6 +116,8 @@ label {
 .eye-icon {
     color: var(--text-secondary);
     transition: color 0.2s;
+    width: 20px;
+    height: 20px;
 }
   
 .eye-icon:hover {
@@ -198,13 +200,17 @@ label {
 }
 
 .date-container:hover::after {
-    background-color: rgba(230, 76, 111, 0.05); /* Efeito sutil na cor principal */
+    background-color: rgba(230, 76, 111, 0.05);
 }
 
+/* Seção de upload de fotos - CORRIGIDA */
 .photo-upload-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
+  min-width: 140px;
+  max-width: 150px;
 }
 
 .photo-label {
@@ -212,6 +218,7 @@ label {
   font-weight: 500;
   margin-bottom: 8px;
   color: var(--text-primary);
+  text-align: center;
 }
 
 .photo-input {
@@ -220,7 +227,7 @@ label {
 
 .photo-preview-container {
   display: flex;
-  gap: 30px;
+  gap: 15px;
   margin-top: 15px;
   margin-bottom: 15px;
   justify-content: center;
@@ -264,8 +271,8 @@ label {
 }
 
 .add-photo {
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border: 2px dashed var(--border-main);
   border-radius: 10px;
   display: flex;
@@ -330,12 +337,6 @@ label {
     font-size: 0.85rem;
     color: #E64C6F;
     text-decoration: none;
-}
-
-.eye-icon {
-  width: 20px;
-  height: 20px;
-  transition: all 0.2s;
 }
   
 /* Terms section */
@@ -487,12 +488,13 @@ label {
   background-color: #b91c1c;
 }
 
+/* MEDIA QUERIES RESPONSIVAS - CORRIGIDAS */
 @media screen and (max-width: 768px) {
-
     .auth-container {
         width: 90%;
         max-width: 400px;
         margin: auto;
+        padding: 20px;
     }
 
     .modal-overlay {
@@ -508,5 +510,73 @@ label {
     .modal-footer {
         padding-left: 16px;
         padding-right: 16px;
+    }
+
+    /* Ajustes específicos para fotos do RG no mobile - CORRIGIDO */
+    .photo-preview-container {
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .photo-upload-section {
+        flex: 1;
+        min-width: calc(50% - 5px);
+        max-width: calc(50% - 5px);
+    }
+
+    .add-photo {
+        width: 100%;
+        height: 120px;
+        min-height: 120px;
+    }
+
+    .photo-preview {
+        width: 100%;
+        height: 120px;
+    }
+
+    .photo-label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .add-icon {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+
+    .add-text {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+
+/* Para telas muito pequenas (menos de 400px) */
+@media screen and (max-width: 400px) {
+    .photo-preview-container {
+        gap: 8px;
+    }
+    
+    .add-photo {
+        height: 100px;
+        min-height: 100px;
+    }
+
+    .photo-preview {
+        height: 100px;
+    }
+
+    .add-icon {
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+
+    .add-text {
+        font-size: 11px;
+    }
+
+    .photo-label {
+        font-size: 11px;
+        margin-bottom: 4px;
     }
 }
