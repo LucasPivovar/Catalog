@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "id": "Camila",
     "name": "Camila Rocha",
@@ -44,51 +43,4 @@
         }
     ]   
 
-=======
-{
-    "id": "Camila",
-    "name": "Camila Rocha",
-    "carrer": [
-        {
-            "carrer1": "Atriz",
-            "carrer2": "Apresentadora"
-        }
-    ],
-    "age": 26,
-    "biography": "Atriz e apresentadora com experiência em televisão e internet. Apresentou diversos programas de entretenimento e possui formação em artes cênicas.",
-
-    "images": [
-        {
-            "imagem1": "./api/models/Camila/images/camila.svg",
-            "imagem2": "",
-            "imagem3": ""
-        }
-    ],
-    "contact": [
-        {
-            "whatsapp": "https://web.whatsapp.com/",
-            "telegram": "https://web.telegram.org/",
-            "instagram": "https://www.instagram.com/"
-        }
-    ],
-    "profile": "",
-    "comments": [	
-        {   
-            "id": 1,
-            "stars": 5,
-            "comment": "Esse modelo é incrível! Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado."
-        },
-        {   
-            "id": 1,
-            "stars": 5,
-            "comment": "Esse modelo é incrível! Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado."
-        },
-        {   
-            "id": 1,
-            "stars": 5,
-            "comment": "Esse modelo é incrível! Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado. Ele é um ator incrível e tem uma personalidade incrível. Ele é muito divertido e é muito engraçado."
-        }
-    ]   
-
->>>>>>> 02e6bf8ab80cdc5de837834f9695e9c3379773c6
 }

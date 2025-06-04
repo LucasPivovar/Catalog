@@ -28,7 +28,11 @@
           placeholder="••••••••" 
           v-model="loginForm.password"
           >
+        <div class="icon-right">
+          <img src="@/assets/icons/Eye.svg" alt="Show password" @click="showPassword = !showPassword" class="eye-icon" v-if="!showPassword">
+          <img src="@/assets/icons/EyeOff.svg" alt="Hide password" @click="showPassword = !showPassword" class="eye-icon" v-else>
 
+        </div>
       </div>
     </div>
     
