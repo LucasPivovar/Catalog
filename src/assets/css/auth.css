@@ -220,11 +220,13 @@ label {
 
 .photo-preview-container {
   display: flex;
+  flex-direction: row;
   gap: 30px;
   margin-top: 15px;
   margin-bottom: 15px;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+
 }
 
 .photo-preview {
